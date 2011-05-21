@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>archetype.it</groupId>
+  <artifactId>basic</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <name>qxapp</name>
+  <description>Application description</description>
+
+<properties>
+    <!-- Qooxdoo javascript application properties -->
+    <qooxdoo.application.name>${project.name}</qooxdoo.application.name>
+    <qooxdoo.application.description>${project.description}</qooxdoo.application.description>
+    <qooxdoo.sdk.version>1.4</qooxdoo.sdk.version>
+    <qooxdoo.sdk.path>${project.build.directory}/qooxdoo-sdk</qooxdoo.sdk.path>
+    <!-- Python settings -->
+    <python.maven.interpreter>python</python.maven.interpreter>
+    <!-- Project -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>    
+  
+  <repositories>
+    <repository>
+      <id>qooxdoo-repository</id>
+      <url>https://repository-charless.forge.cloudbees.com/release</url>
+    </repository>
+  </repositories>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.qooxdoo</groupId>
+      <artifactId>qooxdoo-sdk</artifactId>
+      <version>1.4</version>
+      <type>zip</type>
+    </dependency>
+  </dependencies>
+  
+  <profiles>
+    <!-- SYSTEM PROFILES -->
+    <profile>
+      <id>linux-system</id>
+      <activation>
+        <os>
+          <name>Linux</name>
+        </os>
+      </activation>
+      <properties>
+        <python.maven.interpreter>python</python.maven.interpreter>
+      </properties>
+    </profile>
+    <profile>
+      <id>windows-system</id>
+      <activation>
+        <os>
+          <family>Windows</family>
+        </os>
+      </activation>
+      <properties>
+        <python.maven.interpreter>python</python.maven.interpreter>
+      </properties>
+    </profile>
+    
+    <!-- UNPACK QOOXDOO SDK -->
+    <profile>
+      <id>qooxdoo-unpacking</id>
+      <activation>
+        <file>
+          <missing>${project.build.directory}/qooxdoo-sdk</missing>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.2</version>
+            <executions>
+              <!--Import qooxdoo sdk and add it to target directory -->
+              <execution>
+                <id>extract-qooxdoo-sdk</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <configuration>
+                  <includeArtifactIds>qooxdoo-sdk</includeArtifactIds>
+                  <outputDirectory>${qooxdoo.sdk.path}</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    
+   <!-- Build profiles
+    * Developpment: -Dbuild.type=dev
+    * Production: default
+   -->
+
+    <profile>
+      <!-- Development environment
+        To build your development web application, run: mvn -Dbuild.type=dev compile
+      -->
+      <id>development</id>
+      <activation>
+      <property>
+          <name>build.type</name>
+          <value>dev</value>
+        </property>
+      </activation>
+      <build>
+        <finalName>${qooxdoo.application.name}</finalName>
+        <!-- Plugins configuration -->
+        <plugins>
+          <!-- Qooxdoo build -->
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>qooxdoo-compile-source</id>
+                <phase>compile</phase>
+                <configuration>
+                  <tasks>
+                    <echo>Compiling qooxdoo '${qooxdoo.application.name}' application (DEVELOPMENT VERSION)</echo>
+                    <echo>Application source path : ${qooxdoo.application.sourcePath}</echo>
+                    <exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourcePath}">
+                      <arg value="${qooxdoo.sdk.path}/tool/bin/generator.py" />
+                      <arg value="source" />
+                      <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.path}" />
+                      <arg value="--config=${qooxdoo.root}/config.json" />
+                    </exec>
+                  </tasks>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+    <profile>
+      <!-- Production environment
+        To build your web application, run: mvn compile
+      -->
+      <id>production</id>
+      <activation>
+        <property>
+          <name>!build.type</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Qooxdoo build -->
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>qooxdoo-compile-build</id>
+                <phase>compile</phase>
+                <configuration>
+                  <tasks>
+                    <echo>Compiling qooxdoo '${qooxdoo.application.name}' application (PRODUCTION-VERSION)</echo>
+                    <echo>Application source path : ${qooxdoo.application.sourcePath}</echo>
+                    <exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourcePath}">
+                      <arg value="${qooxdoo.sdk.path}/tool/bin/generator.py" />
+                      <arg value="build" />
+                      <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.path}" />
+                      <arg value="--config=${qooxdoo.root}/config.json" />
+                    </exec>
+                  </tasks>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
+  <build>
+    <plugins>
+    
+    <!-- Init Qooxdoo properties -->
+    <plugin>
+        <groupId>org.codehaus.groovy.maven</groupId>
+        <artifactId>gmaven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>qx.init.properties</id>
+            <phase>initialize</phase>
+              <goals>
+                <goal>execute</goal>
+            </goals>
+            <configuration>
+            <properties>
+            <!-- Do not change qooxdoo properties below unless you know what you are doing ! -->
+            <qooxdoo.package>qxapp</qooxdoo.package>
+            <basedir>${basedir}</basedir>
+            <appname>${qooxdoo.application.name}</appname>
+            </properties>
+            <source>
+              if (! (project.properties['qooxdoo.package'] =~ /\./)) {
+                project.properties['qooxdoo.package.path'] = project.properties['qooxdoo.package'];
+              } else {
+                project.properties['qooxdoo.package.path'] = 
+                  (project.properties['qooxdoo.package'] =~ /\./).replaceAll('/');  // Convert package to a path
+              }
+              project.properties['qooxdoo.application.namespace'] = 
+                  project.properties['qooxdoo.package'];
+              project.properties['qooxdoo.application.sourcePath']=
+                  project.properties['basedir']+"/src/main/qooxdoo";
+              project.properties['qooxdoo.application.resourcePath']=
+                  project.properties['basedir']+"/src/main/resources/"+ project.properties['qooxdoo.package.path'];
+              project.properties['qooxdoo.application.translationPath']=
+                  project.properties['basedir']+"/src/main/resources/"+ project.properties['qooxdoo.package.path'];
+              project.properties['qooxdoo.root'] =
+                  project.properties['basedir']+"/target/qooxdoo/"+project.properties['appname'];
+              project.properties['qooxdoo.cache'] =
+                  project.properties['basedir']+"/target/qooxdoo/"+project.properties['appname']+"/cache";
+            </source>
+          </configuration>
+        </execution>
+       </executions>
+      </plugin>
+    
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.5</version>
+        <executions>
+        
+          <!-- GENERATE manifest.json & config.json -->
+          <execution>
+            <id>generate-qooxdoo-config</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${qooxdoo.root}</outputDirectory>
+              <resources>          
+                <resource>
+                  <directory>${qooxdoo.application.resourcePath}/config</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>              
+            </configuration>         
+          </execution>
+          
+          <!-- GENERATE html -->
+          <execution>
+            <id>generate-qooxdoo-html</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${qooxdoo.root}/source</outputDirectory>
+              <resources>          
+                <resource>
+                  <directory>${qooxdoo.application.resourcePath}/html</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>              
+            </configuration>            
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>
