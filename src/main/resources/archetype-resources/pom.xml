@@ -6,7 +6,7 @@
   <version>${version}</version>
   <packaging>war</packaging>
   
-  <name>qxapp</name>
+  <name>${artifactId}</name>
   <description>Application description</description>
 
 <properties>
@@ -220,9 +220,9 @@
               project.properties['qooxdoo.application.sourcePath']=
                   project.properties['basedir']+"/src/main/qooxdoo";
               project.properties['qooxdoo.application.resourcePath']=
-                  project.properties['basedir']+"/src/main/resources/"+ project.properties['qooxdoo.package.path'];
+                  project.properties['basedir']+"/src/main/resources/qooxdoo/"+ project.properties['qooxdoo.package.path'];
               project.properties['qooxdoo.application.translationPath']=
-                  project.properties['basedir']+"/src/main/resources/"+ project.properties['qooxdoo.package.path'];
+                  project.properties['basedir']+"/src/main/resources/qooxdoo/"+ project.properties['qooxdoo.package.path'];
               project.properties['qooxdoo.root'] =
                   project.properties['basedir']+"/target/qooxdoo/"+project.properties['appname'];
               project.properties['qooxdoo.cache'] =
