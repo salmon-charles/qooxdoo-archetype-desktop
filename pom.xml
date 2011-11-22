@@ -13,7 +13,7 @@
   <parent>
     <groupId>org.qooxdoo</groupId>
     <artifactId>qooxdoo-maven-parent</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.4</version>
   </parent>
 
   <scm>
