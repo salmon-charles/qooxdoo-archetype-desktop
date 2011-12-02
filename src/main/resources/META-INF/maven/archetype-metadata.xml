@@ -4,19 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <fileSets>
     <fileSet filtered="true" packaged="false" encoding="UTF-8">
-      <directory>src/main/resources/qooxdoo</directory>
+      <directory>src/main/resources/qooxdoo/__artifactId__</directory>
       <includes>
         <include>**/*.html</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" packaged="false" encoding="UTF-8">
-      <directory>src/main/qooxdoo</directory>
+      <directory>src/main/qooxdoo/__artifactId__</directory>
       <includes>
         <include>**/*.js</include>
       </includes>
     </fileSet>
     <fileSet filtered="false" packaged="false" encoding="UTF-8">
-      <directory>src/main/resources/qooxdoo</directory>
+      <directory>src/main/resources/qooxdoo/__artifactId__</directory>
       <includes>
         <include>**/*.json</include>
         <include>**/*.png</include>

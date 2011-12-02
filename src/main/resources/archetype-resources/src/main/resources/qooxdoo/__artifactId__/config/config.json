@@ -41,8 +41,8 @@
     "QXTHEME"      : "${APPLICATION}.theme.Theme",
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*", "${APPLICATION}.simulation.*"],
     "LOCALES"      : [ "en" ],
-    "CACHE"        : "${qooxdoo.cache}",
-    "ROOT"         : "${qooxdoo.root}"
+    "CACHE"        : "${qooxdoo.application.cache}",
+    "ROOT"         : "${qooxdoo.application.root}"
   }
 
   // You only need to edit the remainder of this file, if you want to customize

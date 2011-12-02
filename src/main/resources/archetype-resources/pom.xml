@@ -10,11 +10,20 @@
   <description>Application description</description>
 
 <properties>
-    <!-- Qooxdoo javascript application properties -->
-    <qooxdoo.application.name>${project.name}</qooxdoo.application.name>
+    <!-- Qooxdoo properties (safely change)-->
+    <qooxdoo.application.name>${artifactId}</qooxdoo.application.name>
+    <qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
     <qooxdoo.application.description>${project.description}</qooxdoo.application.description>
-    <qooxdoo.sdk.version>1.4</qooxdoo.sdk.version>
+    <!-- Qooxdoo properties (DONT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING)-->
+  	<qooxdoo.sdk.version>1.4</qooxdoo.sdk.version>
     <qooxdoo.sdk.path>${project.build.directory}/qooxdoo-sdk</qooxdoo.sdk.path>
+    <qooxdoo.application.namespace>${artifactId}</qooxdoo.application.namespace>
+    <qooxdoo.application.sourcePath>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourcePath>
+    <qooxdoo.application.resourcePath>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.resourcePath>
+    <qooxdoo.application.translationPath>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.translationPath>
+    <qooxdoo.application.root>${project.build.directory}/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.root>
+    <qooxdoo.application.cache>${qooxdoo.application.root}/cache</qooxdoo.application.cache>
+    
     <!-- Python settings -->
     <python.maven.interpreter>python</python.maven.interpreter>
     <!-- Project -->
@@ -130,7 +139,7 @@
                       <arg value="${qooxdoo.sdk.path}/tool/bin/generator.py" />
                       <arg value="source" />
                       <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.path}" />
-                      <arg value="--config=${qooxdoo.root}/config.json" />
+                      <arg value="--config=${qooxdoo.application.root}/config.json" />
                     </exec>
                   </tasks>
                 </configuration>
@@ -171,7 +180,7 @@
                       <arg value="${qooxdoo.sdk.path}/tool/bin/generator.py" />
                       <arg value="build" />
                       <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.path}" />
-                      <arg value="--config=${qooxdoo.root}/config.json" />
+                      <arg value="--config=${qooxdoo.application.root}/config.json" />
                     </exec>
                   </tasks>
                 </configuration>
@@ -189,50 +198,6 @@
   <build>
     <plugins>
     
-    <!-- Init Qooxdoo properties -->
-    <plugin>
-        <groupId>org.codehaus.groovy.maven</groupId>
-        <artifactId>gmaven-plugin</artifactId>
-        <version>1.0</version>
-        <executions>
-          <execution>
-            <id>qx.init.properties</id>
-            <phase>initialize</phase>
-              <goals>
-                <goal>execute</goal>
-            </goals>
-            <configuration>
-            <properties>
-            <!-- Do not change qooxdoo properties below unless you know what you are doing ! -->
-            <qooxdoo.package>${artifactId}</qooxdoo.package>
-            <basedir>${basedir}</basedir>
-            <appname>${qooxdoo.application.name}</appname>
-            </properties>
-            <source>
-              if (! (project.properties['qooxdoo.package'] =~ /\./)) {
-                project.properties['qooxdoo.package.path'] = project.properties['qooxdoo.package'];
-              } else {
-                project.properties['qooxdoo.package.path'] = 
-                  (project.properties['qooxdoo.package'] =~ /\./).replaceAll('/');  // Convert package to a path
-              }
-              project.properties['qooxdoo.application.namespace'] = 
-                  project.properties['qooxdoo.package'];
-              project.properties['qooxdoo.application.sourcePath']=
-                  project.properties['basedir']+"/src/main/qooxdoo";
-              project.properties['qooxdoo.application.resourcePath']=
-                  project.properties['basedir']+"/src/main/resources/qooxdoo/"+ project.properties['qooxdoo.package.path'];
-              project.properties['qooxdoo.application.translationPath']=
-                  project.properties['basedir']+"/src/main/resources/qooxdoo/"+ project.properties['qooxdoo.package.path'];
-              project.properties['qooxdoo.root'] =
-                  project.properties['basedir']+"/target/qooxdoo/"+project.properties['appname'];
-              project.properties['qooxdoo.cache'] =
-                  project.properties['basedir']+"/target/qooxdoo/"+project.properties['appname']+"/cache";
-            </source>
-          </configuration>
-        </execution>
-       </executions>
-      </plugin>
-    
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.5</version>
@@ -246,7 +211,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${qooxdoo.root}</outputDirectory>
+              <outputDirectory>${qooxdoo.application.root}</outputDirectory>
               <resources>          
                 <resource>
                   <directory>${qooxdoo.application.resourcePath}/config</directory>
@@ -264,7 +229,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${qooxdoo.root}/source</outputDirectory>
+              <outputDirectory>${qooxdoo.application.root}/source</outputDirectory>
               <resources>          
                 <resource>
                   <directory>${qooxdoo.application.resourcePath}/html</directory>
