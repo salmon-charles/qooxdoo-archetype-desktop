@@ -8,11 +8,11 @@
 
 ************************************************************************ */
 
-qx.Theme.define("${package}.theme.Appearance",
+qx.Theme.define("${artifactId}.theme.Color",
 {
-  extend : qx.theme.modern.Appearance,
+  extend : qx.theme.modern.Color,
 
-  appearances :
+  colors :
   {
   }
 });

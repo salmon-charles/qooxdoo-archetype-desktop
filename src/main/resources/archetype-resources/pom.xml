@@ -204,7 +204,7 @@
             <configuration>
             <properties>
             <!-- Do not change qooxdoo properties below unless you know what you are doing ! -->
-            <qooxdoo.package>${package}</qooxdoo.package>
+            <qooxdoo.package>${artifactId}</qooxdoo.package>
             <basedir>${basedir}</basedir>
             <appname>${qooxdoo.application.name}</appname>
             </properties>

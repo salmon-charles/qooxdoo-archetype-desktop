@@ -17,7 +17,7 @@
 /**
  * This is the main application class of your custom application "qxapp"
  */
-qx.Class.define("${package}.Application",
+qx.Class.define("${artifactId}.Application",
 {
   extend : qx.application.Standalone,
 

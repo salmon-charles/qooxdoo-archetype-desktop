@@ -8,11 +8,11 @@
 
 ************************************************************************ */
 
-qx.Theme.define("${package}.theme.Color",
+qx.Theme.define("${artifactId}.theme.Font",
 {
-  extend : qx.theme.modern.Color,
+  extend : qx.theme.modern.Font,
 
-  colors :
+  fonts :
   {
   }
 });

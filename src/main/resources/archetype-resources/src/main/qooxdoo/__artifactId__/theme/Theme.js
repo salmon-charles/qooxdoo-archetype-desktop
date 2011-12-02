@@ -8,14 +8,14 @@
 
 ************************************************************************ */
 
-qx.Theme.define("${package}.theme.Theme",
+qx.Theme.define("${artifactId}.theme.Theme",
 {
   meta :
   {
-    color : ${package}.theme.Color,
-    decoration : ${package}.theme.Decoration,
-    font : ${package}.theme.Font,
+    color : ${artifactId}.theme.Color,
+    decoration : ${artifactId}.theme.Decoration,
+    font : ${artifactId}.theme.Font,
     icon : qx.theme.icon.Tango,
-    appearance : ${package}.theme.Appearance
+    appearance : ${artifactId}.theme.Appearance
   }
 });

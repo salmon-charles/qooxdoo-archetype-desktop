@@ -8,7 +8,7 @@
 
 ************************************************************************ */
 
-qx.Theme.define("${package}.theme.Decoration",
+qx.Theme.define("${artifactId}.theme.Decoration",
 {
   extend : qx.theme.modern.Decoration,
 
