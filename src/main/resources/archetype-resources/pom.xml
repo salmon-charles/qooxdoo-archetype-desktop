@@ -18,11 +18,11 @@
   	<qooxdoo.sdk.version>1.4</qooxdoo.sdk.version>
     <qooxdoo.sdk.path>${project.build.directory}/qooxdoo-sdk</qooxdoo.sdk.path>
     <qooxdoo.application.namespace>${artifactId}</qooxdoo.application.namespace>
-    <qooxdoo.application.sourcePath>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourcePath>
-    <qooxdoo.application.resourcesPath>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.resourcesPath>
-    <qooxdoo.application.translationPath>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.translationPath>
-    <qooxdoo.application.outputPath>${project.build.directory}/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.outputPath>
-    <qooxdoo.application.cache>${qooxdoo.application.outputPath}/cache</qooxdoo.application.cache>
+    <qooxdoo.application.sourceDirectory>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourceDirectory>
+    <qooxdoo.application.resourcesDirectory>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.resourcesDirectory>
+    <qooxdoo.application.translationDirectory>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.translationDirectory>
+    <qooxdoo.application.outputDirectory>${project.build.directory}/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.outputDirectory>
+    <qooxdoo.application.cacheDirectory>${qooxdoo.application.outputDirectory}/cache</qooxdoo.application.cacheDirectory>
     
     <!-- Python settings -->
     <python.maven.interpreter>python</python.maven.interpreter>
@@ -134,12 +134,12 @@
                 <configuration>
                   <tasks>
                     <echo>Compiling qooxdoo '${qooxdoo.application.name}' application (DEVELOPMENT VERSION)</echo>
-                    <echo>Application source path : ${qooxdoo.application.sourcePath}</echo>
-                    <exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourcePath}">
+                    <echo>Application source path : ${qooxdoo.application.sourceDirectory}</echo>
+                    <exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourceDirectory}">
                       <arg value="${qooxdoo.sdk.path}/tool/bin/generator.py" />
                       <arg value="source" />
                       <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.path}" />
-                      <arg value="--config=${qooxdoo.application.outputPath}/config.json" />
+                      <arg value="--config=${qooxdoo.application.outputDirectory}/config.json" />
                     </exec>
                   </tasks>
                 </configuration>
@@ -175,12 +175,12 @@
                 <configuration>
                   <tasks>
                     <echo>Compiling qooxdoo '${qooxdoo.application.name}' application (PRODUCTION-VERSION)</echo>
-                    <echo>Application source path : ${qooxdoo.application.sourcePath}</echo>
-                    <exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourcePath}">
+                    <echo>Application source path : ${qooxdoo.application.sourceDirectory}</echo>
+                    <exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourceDirectory}">
                       <arg value="${qooxdoo.sdk.path}/tool/bin/generator.py" />
                       <arg value="build" />
                       <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.path}" />
-                      <arg value="--config=${qooxdoo.application.outputPath}/config.json" />
+                      <arg value="--config=${qooxdoo.application.outputDirectory}/config.json" />
                     </exec>
                   </tasks>
                 </configuration>
@@ -206,15 +206,15 @@
           <!-- GENERATE manifest.json & config.json -->
           <execution>
             <id>generate-qooxdoo-config</id>
-            <phase>generate-resources</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${qooxdoo.application.outputPath}</outputDirectory>
+              <outputDirectory>${qooxdoo.application.outputDirectory}</outputDirectory>
               <resources>          
                 <resource>
-                  <directory>${qooxdoo.application.resourcesPath}/config</directory>
+                  <directory>${qooxdoo.application.resourcesDirectory}/config</directory>
                   <filtering>true</filtering>
                 </resource>
               </resources>              
@@ -224,15 +224,15 @@
           <!-- GENERATE html -->
           <execution>
             <id>generate-qooxdoo-html</id>
-            <phase>generate-resources</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${qooxdoo.application.outputPath}/source</outputDirectory>
+              <outputDirectory>${qooxdoo.application.outputDirectory}/source</outputDirectory>
               <resources>          
                 <resource>
-                  <directory>${qooxdoo.application.resourcesPath}/html</directory>
+                  <directory>${qooxdoo.application.resourcesDirectory}/html</directory>
                   <filtering>true</filtering>
                 </resource>
               </resources>              

@@ -25,9 +25,9 @@
   {
     "namespace"   : "${qooxdoo.application.namespace}",
     "encoding"    : "${project.build.sourceEncoding}",
-    "class"       : "${qooxdoo.application.sourcePath}",
-    "resource"    : "${qooxdoo.application.resourcesPath}",
-    "translation" : "${qooxdoo.application.translationPath}",
+    "class"       : "${qooxdoo.application.sourceDirectory}",
+    "resource"    : "${qooxdoo.application.resourcesDirectory}",
+    "translation" : "${qooxdoo.application.translationDirectory}",
     "type"        : "application"
   }
 }
