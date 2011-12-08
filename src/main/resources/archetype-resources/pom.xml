@@ -18,6 +18,7 @@
 		<!-- Qooxdoo properties (DONT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING) -->
 		<qooxdoo.sdk.version>1.4</qooxdoo.sdk.version>
 		<qooxdoo.sdk.directory>${project.build.directory}/qooxdoo-sdk</qooxdoo.sdk.directory>
+		<qooxdoo.build.sourceEncoding>${project.build.sourceEncoding}</qooxdoo.build.sourceEncoding>
 		<qooxdoo.application.namespace>${artifactId}</qooxdoo.application.namespace>
 		<qooxdoo.application.sourcesDirectory>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourcesDirectory>
 		<qooxdoo.application.resourcesDirectory>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.resourcesDirectory>
