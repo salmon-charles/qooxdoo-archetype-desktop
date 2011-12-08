@@ -16,7 +16,7 @@
     <qooxdoo.application.description>${project.description}</qooxdoo.application.description>
     <!-- Qooxdoo properties (DONT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING)-->
   	<qooxdoo.sdk.version>1.4</qooxdoo.sdk.version>
-    <qooxdoo.sdk.path>${project.build.directory}/qooxdoo-sdk</qooxdoo.sdk.path>
+    <qooxdoo.sdk.directory>${project.build.directory}/qooxdoo-sdk</qooxdoo.sdk.directory>
     <qooxdoo.application.namespace>${artifactId}</qooxdoo.application.namespace>
     <qooxdoo.application.sourceDirectory>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourceDirectory>
     <qooxdoo.application.resourcesDirectory>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.resourcesDirectory>
@@ -95,7 +95,7 @@
                 </goals>
                 <configuration>
                   <includeArtifactIds>qooxdoo-sdk</includeArtifactIds>
-                  <outputDirectory>${qooxdoo.sdk.path}</outputDirectory>
+                  <outputDirectory>${qooxdoo.sdk.directory}</outputDirectory>
                 </configuration>
               </execution>
             </executions>
@@ -136,9 +136,9 @@
                     <echo>Compiling qooxdoo '${qooxdoo.application.name}' application (DEVELOPMENT VERSION)</echo>
                     <echo>Application source path : ${qooxdoo.application.sourceDirectory}</echo>
                     <exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourceDirectory}">
-                      <arg value="${qooxdoo.sdk.path}/tool/bin/generator.py" />
+                      <arg value="${qooxdoo.sdk.directory}/tool/bin/generator.py" />
                       <arg value="source" />
-                      <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.path}" />
+                      <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.directory}" />
                       <arg value="--config=${qooxdoo.application.outputDirectory}/config.json" />
                     </exec>
                   </tasks>
@@ -177,9 +177,9 @@
                     <echo>Compiling qooxdoo '${qooxdoo.application.name}' application (PRODUCTION-VERSION)</echo>
                     <echo>Application source path : ${qooxdoo.application.sourceDirectory}</echo>
                     <exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourceDirectory}">
-                      <arg value="${qooxdoo.sdk.path}/tool/bin/generator.py" />
+                      <arg value="${qooxdoo.sdk.directory}/tool/bin/generator.py" />
                       <arg value="build" />
-                      <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.path}" />
+                      <arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.directory}" />
                       <arg value="--config=${qooxdoo.application.outputDirectory}/config.json" />
                     </exec>
                   </tasks>
