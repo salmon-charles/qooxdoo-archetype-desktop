@@ -5,7 +5,7 @@
 	<groupId>${groupId}</groupId>
 	<artifactId>${artifactId}</artifactId>
 	<version>${version}</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>${artifactId}</name>
 	<description>Application description</description>
@@ -16,8 +16,8 @@
 		<qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
 		<qooxdoo.application.description>${project.description}</qooxdoo.application.description>
 		<!-- Qooxdoo properties (DONT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING) -->
-		<qooxdoo.sdk.version>1.4</qooxdoo.sdk.version>
-		<qooxdoo.sdk.directory>${project.build.directory}/qooxdoo-sdk</qooxdoo.sdk.directory>
+		<qooxdoo.sdk.version>1.5</qooxdoo.sdk.version>
+		<qooxdoo.sdk.parentDirectory>${project.build.directory}</qooxdoo.sdk.parentDirectory>
 		<qooxdoo.build.sourceEncoding>${project.build.sourceEncoding}</qooxdoo.build.sourceEncoding>
 		<qooxdoo.application.namespace>${artifactId}</qooxdoo.application.namespace>
 		<qooxdoo.application.sourcesDirectory>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourcesDirectory>
@@ -32,19 +32,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>qooxdoo-repository</id>
-			<url>https://repository-charless.forge.cloudbees.com/release</url>
-		</repository>
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.qooxdoo</groupId>
 			<artifactId>qooxdoo-sdk</artifactId>
-			<version>1.4</version>
-			<type>zip</type>
+			<version>${qooxdoo.sdk.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -78,7 +70,7 @@
 			<id>qooxdoo-unpacking</id>
 			<activation>
 				<file>
-					<missing>${project.build.directory}/qooxdoo-sdk</missing>
+					<missing>${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk</missing>
 				</file>
 			</activation>
 			<build>
@@ -97,7 +89,8 @@
 								</goals>
 								<configuration>
 									<includeArtifactIds>qooxdoo-sdk</includeArtifactIds>
-									<outputDirectory>${qooxdoo.sdk.directory}</outputDirectory>
+									<outputDirectory>${qooxdoo.sdk.parentDirectory}</outputDirectory>
+									<excludes>META-INF,.gitignore</excludes>
 								</configuration>
 							</execution>
 						</executions>
@@ -106,11 +99,16 @@
 			</build>
 		</profile>
 
-		<!-- Build profiles * Developpment: -Dbuild.type=dev * Production: default -->
+		<!-- Build profiles 
+			* Development: -Dbuild.type=dev 
+			* Production: default 
+		-->
 
 		<profile>
-			<!-- Development environment To build your development web application, 
-				run: mvn -Dbuild.type=dev compile -->
+			<!-- Development environment 
+				To build your development gui application, 
+				run: mvn -Dbuild.type=dev compile 
+			-->
 			<id>development</id>
 			<activation>
 				<property>
@@ -135,9 +133,9 @@
 										<echo>Application source path : ${qooxdoo.application.sourcesDirectory}</echo>
 										<exec executable="${python.maven.interpreter}"
 											dir="${qooxdoo.application.sourcesDirectory}">
-											<arg value="${qooxdoo.sdk.directory}/tool/bin/generator.py" />
+											<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 											<arg value="source" />
-											<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.directory}" />
+											<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
 											<arg
 												value="--config=${qooxdoo.application.outputDirectory}/config.json" />
 										</exec>
@@ -154,7 +152,10 @@
 
 		</profile>
 		<profile>
-			<!-- Production environment To build your web application, run: mvn compile -->
+			<!-- Production environment 
+				To build your gui application, 
+				run: mvn compile 
+			-->
 			<id>production</id>
 			<activation>
 				<property>
@@ -176,9 +177,9 @@
 										<echo>Application source path : ${qooxdoo.application.sourcesDirectory}</echo>
 										<exec executable="${python.maven.interpreter}"
 											dir="${qooxdoo.application.sourcesDirectory}">
-											<arg value="${qooxdoo.sdk.directory}/tool/bin/generator.py" />
+											<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 											<arg value="build" />
-											<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.directory}" />
+											<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
 											<arg
 												value="--config=${qooxdoo.application.outputDirectory}/config.json" />
 										</exec>
@@ -209,9 +210,9 @@
 								<echo>Generating/Updating translation files</echo>
 								<echo>Translation directory : ${qooxdoo.application.translationDirectory}</echo>
 								<exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourcesDirectory}">
-									<arg value="${qooxdoo.sdk.directory}/tool/bin/generator.py" />
+									<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 									<arg value="translation" />
-									<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.directory}" />
+									<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
 									<arg
 										value="--config=${qooxdoo.application.outputDirectory}/config.json" />
 								</exec>
