@@ -27,7 +27,10 @@
 		<qooxdoo.application.cacheDirectory>${qooxdoo.application.outputDirectory}/cache</qooxdoo.application.cacheDirectory>
 
 		<!-- Python settings -->
-		<python.maven.interpreter>python</python.maven.interpreter>
+		<python>python</python>
+		<python.lin>python</python.lin>  <!-- Path to python interpreter on linux -->
+		<python.win>python</python.win>  <!-- Path to python interpreter on windows -->
+		<python.mac>python</python.mac>  <!-- Path to python interpreter on mac -->
 		<!-- Project -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -50,7 +53,7 @@
 				</os>
 			</activation>
 			<properties>
-				<python.maven.interpreter>python</python.maven.interpreter>
+				<python>${python.lin}</python>
 			</properties>
 		</profile>
 		<profile>
@@ -61,42 +64,19 @@
 				</os>
 			</activation>
 			<properties>
-				<python.maven.interpreter>python</python.maven.interpreter>
+				<python>${python.win}</python>
 			</properties>
 		</profile>
-
-		<!-- UNPACK QOOXDOO SDK -->
 		<profile>
-			<id>qooxdoo-unpacking</id>
+			<id>mac-system</id>
 			<activation>
-				<file>
-					<missing>${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk</missing>
-				</file>
+				<os>
+					<family>Mac</family>
+				</os>
 			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<version>2.2</version>
-						<executions>
-							<!--Import qooxdoo sdk and add it to target directory -->
-							<execution>
-								<id>extract-qooxdoo-sdk</id>
-								<phase>initialize</phase>
-								<goals>
-									<goal>unpack-dependencies</goal>
-								</goals>
-								<configuration>
-									<includeArtifactIds>qooxdoo-sdk</includeArtifactIds>
-									<outputDirectory>${qooxdoo.sdk.parentDirectory}</outputDirectory>
-									<excludes>META-INF,.gitignore</excludes>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
+			<properties>
+				<python>${python.mac}</python>
+			</properties>
 		</profile>
 
 		<!-- Build profiles 
@@ -131,7 +111,7 @@
 									<tasks>
 										<echo>Compiling qooxdoo '${qooxdoo.application.name}' application (DEVELOPMENT VERSION)</echo>
 										<echo>Application source path : ${qooxdoo.application.sourcesDirectory}</echo>
-										<exec executable="${python.maven.interpreter}"
+										<exec executable="${python}"
 											dir="${qooxdoo.application.sourcesDirectory}">
 											<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 											<arg value="source" />
@@ -175,7 +155,7 @@
 									<tasks>
 										<echo>Compiling qooxdoo '${qooxdoo.application.name}' application (PRODUCTION-VERSION)</echo>
 										<echo>Application source path : ${qooxdoo.application.sourcesDirectory}</echo>
-										<exec executable="${python.maven.interpreter}"
+										<exec executable="${python}"
 											dir="${qooxdoo.application.sourcesDirectory}">
 											<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 											<arg value="build" />
@@ -198,6 +178,27 @@
 
 	<build>
 		<plugins>
+			<!-- UNPACK QOOXDOO SDK -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<!--Import qooxdoo sdk and add it to target directory -->
+					<execution>
+						<id>extract-qooxdoo-sdk</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeArtifactIds>qooxdoo-sdk</includeArtifactIds>
+							<outputDirectory>${qooxdoo.sdk.parentDirectory}</outputDirectory>
+							<excludes>META-INF,.gitignore</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- Translation -->
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -209,7 +210,7 @@
 							<tasks>
 								<echo>Generating/Updating translation files</echo>
 								<echo>Translation directory : ${qooxdoo.application.translationDirectory}</echo>
-								<exec executable="${python.maven.interpreter}" dir="${qooxdoo.application.sourcesDirectory}">
+								<exec executable="${python}" dir="${qooxdoo.application.sourcesDirectory}">
 									<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 									<arg value="translation" />
 									<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
@@ -224,6 +225,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Filtered resources -->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.5</version>
