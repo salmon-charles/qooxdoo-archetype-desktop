@@ -4,7 +4,7 @@
 
   <groupId>org.qooxdoo</groupId>
   <artifactId>qooxdoo-archetype-gui</artifactId>
-  <version>1.5</version>
+  <version>1.5-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>qooxdoo-archetype-gui</name>
@@ -17,9 +17,9 @@
   </parent>
 
   <scm>
-    <connection>scm:git:git://github.com/salmon-charles/qooxdoo-maven.git</connection>
-    <developerConnection>scm:git:git@github.com:salmon-charles/qooxdoo-maven.git</developerConnection>
-    <url>https://github.com/salmon-charles/qooxdoo-maven</url>
+    <connection>scm:git:git://github.com/salmon-charles/qooxdoo-archetype-gui.git</connection>
+    <developerConnection>scm:git:git@github.com:salmon-charles/qooxdoo-archetype-gui.git</developerConnection>
+    <url>https://github.com/salmon-charles/qooxdoo-archetype-gui</url>
   </scm>
 
   <build>
