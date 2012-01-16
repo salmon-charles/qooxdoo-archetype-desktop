@@ -4,7 +4,7 @@
 
   <groupId>org.qooxdoo</groupId>
   <artifactId>qooxdoo-archetype-gui</artifactId>
-  <version>1.5</version>
+  <version>1.6-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>qooxdoo-archetype-gui</name>
