@@ -16,15 +16,15 @@
 		<qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
 		<qooxdoo.application.description>${project.description}</qooxdoo.application.description>
 		<!-- Qooxdoo properties (DONT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING) -->
-		<qooxdoo.sdk.version>1.5</qooxdoo.sdk.version>
+		<qooxdoo.sdk.version>1.6</qooxdoo.sdk.version>
 		<qooxdoo.sdk.parentDirectory>${project.build.directory}</qooxdoo.sdk.parentDirectory>
 		<qooxdoo.build.sourceEncoding>${project.build.sourceEncoding}</qooxdoo.build.sourceEncoding>
 		<qooxdoo.application.namespace>${artifactId}</qooxdoo.application.namespace>
 		<qooxdoo.application.sourcesDirectory>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourcesDirectory>
-		<qooxdoo.application.resourcesDirectory>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.resourcesDirectory>
-		<qooxdoo.application.translationDirectory>${project.basedir}/src/main/resources/qooxdoo/${qooxdoo.application.namespace}/translation</qooxdoo.application.translationDirectory>
-		<qooxdoo.application.outputDirectory>${project.build.directory}/qooxdoo/${qooxdoo.application.namespace}</qooxdoo.application.outputDirectory>
-		<qooxdoo.application.cacheDirectory>${qooxdoo.application.outputDirectory}/cache</qooxdoo.application.cacheDirectory>
+		<qooxdoo.application.resourcesDirectory>${project.basedir}/src/main/resources/qooxdoo</qooxdoo.application.resourcesDirectory>
+		<qooxdoo.application.translationDirectory>${project.basedir}/src/main/resources/translation</qooxdoo.application.translationDirectory>
+		<qooxdoo.application.outputDirectory>${project.build.directory}/qooxdoo</qooxdoo.application.outputDirectory>
+		<qooxdoo.application.cacheDirectory>${project.build.directory}/qooxdoo/cache</qooxdoo.application.cacheDirectory>
 
 		<!-- Python settings -->
 		<python>python</python>
@@ -117,7 +117,7 @@
 											<arg value="source" />
 											<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
 											<arg
-												value="--config=${qooxdoo.application.outputDirectory}/config.json" />
+												value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
 										</exec>
 									</tasks>
 								</configuration>
@@ -161,7 +161,7 @@
 											<arg value="build" />
 											<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
 											<arg
-												value="--config=${qooxdoo.application.outputDirectory}/config.json" />
+												value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
 										</exec>
 									</tasks>
 								</configuration>
@@ -215,7 +215,7 @@
 									<arg value="translation" />
 									<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
 									<arg
-										value="--config=${qooxdoo.application.outputDirectory}/config.json" />
+										value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
 								</exec>
 							</tasks>
 						</configuration>
@@ -239,10 +239,10 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${qooxdoo.application.outputDirectory}</outputDirectory>
+							<outputDirectory>${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${qooxdoo.application.resourcesDirectory}/config</directory>
+									<directory>${qooxdoo.application.resourcesDirectory}/${qooxdoo.application.namespace}/config</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
@@ -257,10 +257,10 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${qooxdoo.application.outputDirectory}/source</outputDirectory>
+							<outputDirectory>${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/source</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${qooxdoo.application.resourcesDirectory}/html</directory>
+									<directory>${qooxdoo.application.resourcesDirectory}/${qooxdoo.application.namespace}/html</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>

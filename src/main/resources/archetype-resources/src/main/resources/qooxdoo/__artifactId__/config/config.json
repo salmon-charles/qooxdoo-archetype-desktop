@@ -42,7 +42,7 @@
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*", "${APPLICATION}.simulation.*"],
     "LOCALES"      : [ "en" ],
     "CACHE"        : "${qooxdoo.application.cacheDirectory}",
-    "ROOT"         : "${qooxdoo.application.outputDirectory}"
+    "ROOT"         : "${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}"
   }
 
   // You only need to edit the remainder of this file, if you want to customize
