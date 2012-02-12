@@ -10,7 +10,7 @@ Visit the [qooxdoo-archetype home page] project page for full documentation.
 
 ## Using the maven command line
 
-			$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-gui -DarchetypeVersion=1.5
+			$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-gui -DarchetypeVersion=1.6
 			$ cd appname
 			$ mvn package
 
@@ -26,19 +26,19 @@ Then go to *file:///path/to/appname/target/qooxdoo/appname/source/index.html*
 
 You need to install the maven eclipse plugin first (m2e).
 
-    1. Go to File/New/Other…
+    1. Go to File/New/Other...
     2. Select Maven/Maven Project
-       1. **New Maven Project/Select project name and location page**: 
-           - click Next
-       2. **New Maven Project/Select an Archetype page**:
-           - Catalog: Select All catalogs
-           - Filter: type qooxdoo
-           - The qooxdoo-archetype-gui should appear; select it and click Next
-       3. **New Maven Project/Enter an artifact id. page**:
-           - enter project definition and click Next
+       1. New Maven Project/Select project name and location page: 
+           -   click Next
+       2. New Maven Project/Select an Archetype page:
+           -   Catalog: Select All catalogs
+           -   Filter: type qooxdoo
+           -   The qooxdoo-archetype-gui should appear; select it and click Next
+       3. New Maven Project/Enter an artifact id. page:
+           -   enter project definition and click Next
            
 The project will be created in Eclipse:
-     - Right-click the project and select *Run as/Maven package*
+-   Right-click the project and select *Run as/Maven package*
 
 
 

@@ -12,6 +12,7 @@
 
 	<properties>
 		<!-- Qooxdoo properties (safely change) -->
+		<qooxdoo.build.job>build</qooxdoo.build.job> <!--  Default job for compilation (production)-->
 		<qooxdoo.application.name>${artifactId}</qooxdoo.application.name>
 		<qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
 		<qooxdoo.application.description>${project.description}</qooxdoo.application.description>
@@ -25,7 +26,6 @@
 		<qooxdoo.application.translationDirectory>${project.basedir}/src/main/resources/translation</qooxdoo.application.translationDirectory>
 		<qooxdoo.application.outputDirectory>${project.build.directory}/qooxdoo</qooxdoo.application.outputDirectory>
 		<qooxdoo.application.cacheDirectory>${project.build.directory}/qooxdoo/cache</qooxdoo.application.cacheDirectory>
-
 		<!-- Python settings -->
 		<python>python</python>
 		<python.lin>python</python.lin>  <!-- Path to python interpreter on linux -->
@@ -79,16 +79,11 @@
 			</properties>
 		</profile>
 
-		<!-- Build profiles 
-			* Development: -Dbuild.type=dev 
-			* Production: default 
-		-->
-
-		<profile>
-			<!-- Development environment 
+		<!-- Development environment 
 				To build your development gui application, 
-				run: mvn -Dbuild.type=dev compile 
-			-->
+					run: mvn -Dbuild.type=dev compile
+		-->
+		<profile>
 			<id>development</id>
 			<activation>
 				<property>
@@ -96,83 +91,9 @@
 					<value>dev</value>
 				</property>
 			</activation>
-			<build>
-				<finalName>${qooxdoo.application.name}</finalName>
-				<!-- Plugins configuration -->
-				<plugins>
-					<!-- Qooxdoo build -->
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>qooxdoo-compile-source</id>
-								<phase>compile</phase>
-								<configuration>
-									<tasks>
-										<echo>Compiling qooxdoo '${qooxdoo.application.name}' application (DEVELOPMENT VERSION)</echo>
-										<echo>Application source path : ${qooxdoo.application.sourcesDirectory}</echo>
-										<exec executable="${python}"
-											dir="${qooxdoo.application.sourcesDirectory}">
-											<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
-											<arg value="source" />
-											<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
-											<arg
-												value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
-										</exec>
-									</tasks>
-								</configuration>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-
-		</profile>
-		<profile>
-			<!-- Production environment 
-				To build your gui application, 
-				run: mvn compile 
-			-->
-			<id>production</id>
-			<activation>
-				<property>
-					<name>!build.type</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<!-- Qooxdoo build -->
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>qooxdoo-compile-build</id>
-								<phase>compile</phase>
-								<configuration>
-									<tasks>
-										<echo>Compiling qooxdoo '${qooxdoo.application.name}' application (PRODUCTION-VERSION)</echo>
-										<echo>Application source path : ${qooxdoo.application.sourcesDirectory}</echo>
-										<exec executable="${python}"
-											dir="${qooxdoo.application.sourcesDirectory}">
-											<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
-											<arg value="build" />
-											<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
-											<arg
-												value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
-										</exec>
-									</tasks>
-								</configuration>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
+			<properties>
+				<qooxdoo.build.job>source-hybrid</qooxdoo.build.job>
+			</properties>
 		</profile>
 	</profiles>
 
@@ -199,21 +120,50 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Translation -->
+			<!-- GENERATOR -->
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
+					<!-- Translation -->
 					<execution>
 						<id>qooxdoo-translation</id>
 						<phase>generate-resources</phase>
 						<configuration>
 							<tasks>
 								<echo>Generating/Updating translation files</echo>
-								<echo>Translation directory : ${qooxdoo.application.translationDirectory}</echo>
-								<exec executable="${python}" dir="${qooxdoo.application.sourcesDirectory}">
-									<arg value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
+								<echo>Translation directory :
+									${qooxdoo.application.translationDirectory}</echo>
+								<exec executable="${python}" dir="${project.basedir}">
+									<arg
+										value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 									<arg value="translation" />
-									<arg value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
+									<arg
+										value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
+									<arg
+										value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
+								</exec>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<!-- Compilation -->
+					<execution>
+						<id>qooxdoo-compile-build</id>
+						<phase>compile</phase>
+						<configuration>
+							<tasks>
+								<echo>Compiling qooxdoo '${qooxdoo.application.name}'
+									application (PRODUCTION-VERSION)</echo>
+								<echo>Application source path :
+									${qooxdoo.application.sourcesDirectory}</echo>
+								<exec executable="${python}" dir="${project.basedir}">
+									<arg
+										value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
+									<arg value="${qooxdoo.build.job}" />
+									<arg
+										value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
 									<arg
 										value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
 								</exec>
@@ -268,6 +218,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 
