@@ -27,7 +27,7 @@
 		<qooxdoo.application.outputDirectory>${project.build.directory}/qooxdoo</qooxdoo.application.outputDirectory>
 		<qooxdoo.application.cacheDirectory>${project.build.directory}/qooxdoo/cache</qooxdoo.application.cacheDirectory>
 		<!-- Python settings -->
-		<python>python</python>
+		<qooxdoo.build.python>python</qooxdoo.build.python>
 		<python.lin>python</python.lin>  <!-- Path to python interpreter on linux -->
 		<python.win>python</python.win>  <!-- Path to python interpreter on windows -->
 		<python.mac>python</python.mac>  <!-- Path to python interpreter on mac -->
@@ -53,7 +53,7 @@
 				</os>
 			</activation>
 			<properties>
-				<python>${python.lin}</python>
+				<qooxdoo.build.python>${python.lin}</qooxdoo.build.python>
 			</properties>
 		</profile>
 		<profile>
@@ -64,7 +64,7 @@
 				</os>
 			</activation>
 			<properties>
-				<python>${python.win}</python>
+				<qooxdoo.build.python>${python.win}</qooxdoo.build.python>
 			</properties>
 		</profile>
 		<profile>
@@ -75,7 +75,7 @@
 				</os>
 			</activation>
 			<properties>
-				<python>${python.mac}</python>
+				<qooxdoo.build.python>${python.mac}</qooxdoo.build.python>
 			</properties>
 		</profile>
 
