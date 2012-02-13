@@ -133,7 +133,7 @@
 								<echo>Generating/Updating translation files</echo>
 								<echo>Translation directory :
 									${qooxdoo.application.translationDirectory}</echo>
-								<exec executable="${python}" dir="${project.basedir}">
+								<exec executable="${qooxdoo.build.python}" dir="${project.basedir}">
 									<arg
 										value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 									<arg value="translation" />
@@ -158,7 +158,7 @@
 									application (PRODUCTION-VERSION)</echo>
 								<echo>Application source path :
 									${qooxdoo.application.sourcesDirectory}</echo>
-								<exec executable="${python}" dir="${project.basedir}">
+								<exec executable="${qooxdoo.build.python}" dir="${project.basedir}">
 									<arg
 										value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
 									<arg value="${qooxdoo.build.job}" />
