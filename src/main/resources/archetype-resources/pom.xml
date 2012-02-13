@@ -23,7 +23,7 @@
 		<qooxdoo.application.namespace>${artifactId}</qooxdoo.application.namespace>
 		<qooxdoo.application.sourcesDirectory>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourcesDirectory>
 		<qooxdoo.application.resourcesDirectory>${project.basedir}/src/main/resources/qooxdoo</qooxdoo.application.resourcesDirectory>
-		<qooxdoo.application.translationDirectory>${project.basedir}/src/main/resources/translation</qooxdoo.application.translationDirectory>
+		<qooxdoo.application.translationDirectory>${project.basedir}/src/main/resources/qooxdoo/translation</qooxdoo.application.translationDirectory>
 		<qooxdoo.application.outputDirectory>${project.build.directory}/qooxdoo</qooxdoo.application.outputDirectory>
 		<qooxdoo.application.cacheDirectory>${project.build.directory}/qooxdoo/cache</qooxdoo.application.cacheDirectory>
 		<!-- Python settings -->
@@ -150,7 +150,7 @@
 					</execution>
 					<!-- Compilation -->
 					<execution>
-						<id>qooxdoo-compile-build</id>
+						<id>qooxdoo-compile</id>
 						<phase>compile</phase>
 						<configuration>
 							<tasks>

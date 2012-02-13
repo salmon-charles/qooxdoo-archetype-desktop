@@ -23,7 +23,7 @@
       </includes>
     </fileSet>
     <fileSet filtered="false" packaged="false" encoding="UTF-8">
-      <directory>src/main/resources/translation</directory>
+      <directory>src/main/resources/qooxdoo/translation</directory>
       <includes>
         <include>README</include>
       </includes>
