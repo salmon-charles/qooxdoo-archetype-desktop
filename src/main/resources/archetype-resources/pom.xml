@@ -131,8 +131,7 @@
 						<configuration>
 							<tasks>
 								<echo>Generating/Updating translation files</echo>
-								<echo>Translation directory :
-									${qooxdoo.application.translationDirectory}</echo>
+								<echo>Translation directory : ${qooxdoo.application.translationDirectory}</echo>
 								<exec executable="${qooxdoo.build.python}" dir="${project.basedir}">
 									<arg
 										value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
@@ -150,14 +149,12 @@
 					</execution>
 					<!-- Compilation -->
 					<execution>
-						<id>qooxdoo-compile</id>
+						<id>qooxdoo-build</id>
 						<phase>compile</phase>
 						<configuration>
 							<tasks>
-								<echo>Compiling qooxdoo '${qooxdoo.application.name}'
-									application (PRODUCTION-VERSION)</echo>
-								<echo>Application source path :
-									${qooxdoo.application.sourcesDirectory}</echo>
+								<echo>Building qooxdoo application</echo>
+								<echo>Application source path : ${qooxdoo.application.sourcesDirectory}</echo>
 								<exec executable="${qooxdoo.build.python}" dir="${project.basedir}">
 									<arg
 										value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
