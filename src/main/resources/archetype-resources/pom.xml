@@ -5,34 +5,26 @@
 	<groupId>${groupId}</groupId>
 	<artifactId>${artifactId}</artifactId>
 	<version>${version}</version>
-	<packaging>jar</packaging>
+	<packaging>qooxdoo</packaging>
 
 	<name>${artifactId}</name>
 	<description>Application description</description>
 
 	<properties>
-		<!-- Qooxdoo properties (safely change) -->
-		<qooxdoo.build.job>build</qooxdoo.build.job> <!--  Default job for compilation (production)-->
+		<!-- Project -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Qooxdoo properties -->
 		<qooxdoo.application.name>${artifactId}</qooxdoo.application.name>
 		<qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
 		<qooxdoo.application.description>${project.description}</qooxdoo.application.description>
-		<!-- Qooxdoo properties (DONT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING) -->
 		<qooxdoo.sdk.version>1.6</qooxdoo.sdk.version>
-		<qooxdoo.sdk.parentDirectory>${project.build.directory}</qooxdoo.sdk.parentDirectory>
 		<qooxdoo.build.sourceEncoding>${project.build.sourceEncoding}</qooxdoo.build.sourceEncoding>
-		<qooxdoo.application.namespace>${artifactId}</qooxdoo.application.namespace>
-		<qooxdoo.application.sourcesDirectory>${project.basedir}/src/main/qooxdoo</qooxdoo.application.sourcesDirectory>
-		<qooxdoo.application.resourcesDirectory>${project.basedir}/src/main/resources/qooxdoo</qooxdoo.application.resourcesDirectory>
-		<qooxdoo.application.translationDirectory>${project.basedir}/src/main/resources/qooxdoo/translation</qooxdoo.application.translationDirectory>
-		<qooxdoo.application.outputDirectory>${project.build.directory}/qooxdoo</qooxdoo.application.outputDirectory>
-		<qooxdoo.application.cacheDirectory>${project.build.directory}/qooxdoo/cache</qooxdoo.application.cacheDirectory>
+		<qooxdoo.build.job>build</qooxdoo.build.job> <!--  Default job for compilation (production)-->
 		<!-- Python settings -->
 		<qooxdoo.build.python>python</qooxdoo.build.python>
 		<python.lin>python</python.lin>  <!-- Path to python interpreter on linux -->
 		<python.win>python</python.win>  <!-- Path to python interpreter on windows -->
 		<python.mac>python</python.mac>  <!-- Path to python interpreter on mac -->
-		<!-- Project -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
@@ -99,123 +91,13 @@
 
 	<build>
 		<plugins>
-			<!-- UNPACK QOOXDOO SDK -->
+			<!-- QOOXDOO PLUGIN -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.2</version>
-				<executions>
-					<!--Import qooxdoo sdk and add it to target directory -->
-					<execution>
-						<id>extract-qooxdoo-sdk</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>unpack-dependencies</goal>
-						</goals>
-						<configuration>
-							<includeArtifactIds>qooxdoo-sdk</includeArtifactIds>
-							<outputDirectory>${qooxdoo.sdk.parentDirectory}</outputDirectory>
-							<excludes>META-INF,.gitignore</excludes>
-						</configuration>
-					</execution>
-				</executions>
+				<groupId>org.qooxdoo</groupId>
+				<artifactId>qooxdoo-maven-plugin</artifactId>
+				<version>1.6-SNAPSHOT</version>
+				<extensions>true</extensions>
 			</plugin>
-			<!-- GENERATOR -->
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<!-- Translation -->
-					<execution>
-						<id>qooxdoo-translation</id>
-						<phase>generate-resources</phase>
-						<configuration>
-							<tasks>
-								<echo>Generating/Updating translation files</echo>
-								<echo>Translation directory : ${qooxdoo.application.translationDirectory}</echo>
-								<exec executable="${qooxdoo.build.python}" dir="${project.basedir}">
-									<arg
-										value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
-									<arg value="translation" />
-									<arg
-										value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
-									<arg
-										value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
-								</exec>
-							</tasks>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-					<!-- Compilation -->
-					<execution>
-						<id>qooxdoo-build</id>
-						<phase>compile</phase>
-						<configuration>
-							<tasks>
-								<echo>Building qooxdoo application</echo>
-								<echo>Application source path : ${qooxdoo.application.sourcesDirectory}</echo>
-								<exec executable="${qooxdoo.build.python}" dir="${project.basedir}">
-									<arg
-										value="${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk/tool/bin/generator.py" />
-									<arg value="${qooxdoo.build.job}" />
-									<arg
-										value="--macro=QOOXDOO_PATH:${qooxdoo.sdk.parentDirectory}/qooxdoo-sdk" />
-									<arg
-										value="--config=${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/config.json" />
-								</exec>
-							</tasks>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Filtered resources -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<executions>
-
-					<!-- GENERATE manifest.json & config.json -->
-					<execution>
-						<id>generate-qooxdoo-config</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${qooxdoo.application.resourcesDirectory}/${qooxdoo.application.namespace}/config</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-
-					<!-- GENERATE html -->
-					<execution>
-						<id>generate-qooxdoo-html</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${qooxdoo.application.outputDirectory}/${qooxdoo.application.namespace}/source</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${qooxdoo.application.resourcesDirectory}/${qooxdoo.application.namespace}/html</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 		</plugins>
 	</build>
 
