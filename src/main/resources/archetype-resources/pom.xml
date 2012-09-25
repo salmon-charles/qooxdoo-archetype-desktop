@@ -20,6 +20,7 @@
 		<qooxdoo.sdk.version>1.6</qooxdoo.sdk.version>
 		<qooxdoo.build.sourceEncoding>${project.build.sourceEncoding}</qooxdoo.build.sourceEncoding>
 		<qooxdoo.build.job>build</qooxdoo.build.job> <!--  Default job for compilation (production)-->
+		<qooxdoo.test.job>test</qooxdoo.test.job> <!--  Default job for test (production)-->
 		<!-- Python settings -->
 		<qooxdoo.build.python>python</qooxdoo.build.python>
 		<python.lin>python</python.lin>  <!-- Path to python interpreter on linux -->
@@ -97,6 +98,9 @@
 				<artifactId>qooxdoo-maven-plugin</artifactId>
 				<version>1.6-SNAPSHOT</version>
 				<extensions>true</extensions>
+				<configuration>
+					<useEmbeddedJython>false</useEmbeddedJython> <!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
