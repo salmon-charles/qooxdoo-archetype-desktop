@@ -120,7 +120,7 @@
                      <webApp>
 					    <contextPath>/</contextPath>
 					    <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
-					      <resourcesAsCSV>${project.build.directory}/qooxdoo/${qooxdoo.application.name},${basedir}</resourcesAsCSV>
+					      <resourcesAsCSV>${project.build.directory}/qooxdoo/${qooxdoo.application.name},${basedir},${project.build.directory}/qooxdoo</resourcesAsCSV>
 					    </baseResource>
 					</webApp>
                     <connectors>
