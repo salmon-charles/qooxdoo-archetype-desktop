@@ -14,15 +14,23 @@
 
 <b>Important: if the link points to an empty page, make sure you have builded the application/component by using the appropriate maven command !</b>
 
+<h3>Production</h3>
 <ul>
 	<li>
 		Launch <pre>mvn compile</pre> to build the <a href="build/index.html">production version of your application</a> 
 	</li>
 	<li>
+		Launch <pre>mvn qooxdoo:testrunner</pre> to build the <a href="test/index.html">testrunner application (unit tests)</a> 
+	</li>
+</ul>
+
+<h3>Development</h3>
+<ul>
+	<li>
 		Launch <pre>mvn -Dbuild.type=dev compile</pre> to build the <a href="source/index.html">development version of your application</a>
 	</li>
 	<li>
-		Launch <pre>mvn qooxdoo:testrunner</pre> to build the <a href="test/index.html">testrunner application (unit tests)</a> 
+		Launch <pre>mvn -Dbuild.type=dev qooxdoo:testrunner</pre> to build the <a href="test-source/index.html">testrunner application (unit tests)</a> 
 	</li>
 </ul>
 

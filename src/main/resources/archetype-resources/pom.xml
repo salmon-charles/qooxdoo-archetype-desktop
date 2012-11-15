@@ -91,6 +91,7 @@
 			</activation>
 			<properties>
 				<qooxdoo.build.job>source-hybrid</qooxdoo.build.job>
+				<qooxdoo.test.job>test-source</qooxdoo.test.job>
 			</properties>
 		</profile>
 	</profiles>
