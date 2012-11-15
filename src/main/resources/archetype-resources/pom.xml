@@ -13,11 +13,14 @@
 	<properties>
 		<!-- Project -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Jetty -->
+		<jetty8.version>8.1.3.v20120416</jetty8.version>
+		<jetty8.connector.implementation>org.eclipse.jetty.server.nio.SelectChannelConnector</jetty8.connector.implementation>
 		<!-- Qooxdoo properties -->
 		<qooxdoo.application.name>${artifactId}</qooxdoo.application.name>
 		<qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
 		<qooxdoo.application.description>${project.description}</qooxdoo.application.description>
-		<qooxdoo.sdk.version>1.6</qooxdoo.sdk.version>
+		<qooxdoo.sdk.version>2.0.1</qooxdoo.sdk.version>
 		<qooxdoo.build.sourceEncoding>${project.build.sourceEncoding}</qooxdoo.build.sourceEncoding>
 		<qooxdoo.build.job>build</qooxdoo.build.job> <!--  Default job for compilation (production)-->
 		<qooxdoo.test.job>test</qooxdoo.test.job> <!--  Default job for test (production)-->
@@ -58,6 +61,8 @@
 			</activation>
 			<properties>
 				<qooxdoo.build.python>${python.win}</qooxdoo.build.python>
+				<!-- Line bellow to avoid lock problems on windows when using auto-scan -->
+				<jetty8.connector.implementation>org.eclipse.jetty.server.bio.SocketConnector</jetty8.connector.implementation>
 			</properties>
 		</profile>
 		<profile>
@@ -102,6 +107,30 @@
 					<useEmbeddedJython>false</useEmbeddedJython> <!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython -->
 				</configuration>
 			</plugin>
+			
+			<!-- JETTY SERVER -->
+			<plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty8.version}</version>
+                <configuration>
+                    <webAppSourceDirectory>${project.build.directory}/qooxdoo/${qooxdoo.application.name}</webAppSourceDirectory>
+                    <scanIntervalSeconds>1</scanIntervalSeconds>
+                     <webApp>
+					    <contextPath>/</contextPath>
+					    <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+					      <resourcesAsCSV>${project.build.directory}/qooxdoo/${qooxdoo.application.name},${basedir}</resourcesAsCSV>
+					    </baseResource>
+					</webApp>
+                    <connectors>
+                        <connector implementation="${jetty8.connector.implementation}">
+                            <port>8080</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                </configuration>
+            </plugin>
+            
 		</plugins>
 	</build>
 
