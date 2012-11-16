@@ -119,7 +119,7 @@
                 <version>${jetty8.version}</version>
                 <configuration>
                     <webAppSourceDirectory>${project.build.directory}/qooxdoo/${qooxdoo.application.name}</webAppSourceDirectory>
-                    <scanIntervalSeconds>1</scanIntervalSeconds>
+                    <!-- <scanIntervalSeconds>1</scanIntervalSeconds> -->
                      <webApp>
 					    <contextPath>/</contextPath>
 					    <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
