@@ -19,6 +19,7 @@
       <directory>src/main/resources/qooxdoo/__artifactId__</directory>
       <includes>
         <include>**/*.json</include>
+        <include>**/*.py</include>
         <include>**/*.png</include>
       </includes>
     </fileSet>
@@ -27,6 +28,12 @@
       <includes>
         <include>README</include>
         <include>en.po</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" packaged="false" encoding="UTF-8">
+      <directory>src/test/qooxdoo/__artifactId__</directory>
+      <includes>
+        <include>**/*.js</include>
       </includes>
     </fileSet>
   </fileSets>

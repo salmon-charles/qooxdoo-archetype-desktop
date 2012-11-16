@@ -63,6 +63,9 @@
 				<qooxdoo.build.python>${python.win}</qooxdoo.build.python>
 				<!-- Line bellow to avoid lock problems on windows when using auto-scan -->
 				<jetty8.connector.implementation>org.eclipse.jetty.server.bio.SocketConnector</jetty8.connector.implementation>
+				<!-- Uncomment lines below to use internet-explorer for unit tests -->
+				<!-- <qooxdoo.test.unit.browser>ie</qooxdoo.test.unit.browser>
+				<webdriver.ie.driver>IEDriverServer.exe</webdriver.ie.driver> -->
 			</properties>
 		</profile>
 		<profile>
