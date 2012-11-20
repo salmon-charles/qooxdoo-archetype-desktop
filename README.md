@@ -2,7 +2,7 @@
 
 # Qooxdoo Archetype Gui
 
-The qooxdoo-archetype-gui is a maven archetype to create a qooxdoo application within a maven project.
+The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.
 
 Visit the [qooxdoo-archetype home page] project page for full documentation.
 
@@ -10,7 +10,7 @@ Visit the [qooxdoo-archetype home page] project page for full documentation.
 
 ## Using the maven command line
 
-			$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-gui -DarchetypeVersion=1.6
+			$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
 			$ cd appname
 			$ mvn package
 
@@ -33,7 +33,7 @@ You need to install the maven eclipse plugin first (m2e).
        2. New Maven Project/Select an Archetype page:
            -   Catalog: Select All catalogs
            -   Filter: type qooxdoo
-           -   The qooxdoo-archetype-gui should appear; select it and click Next
+           -   The qooxdoo-archetype-desktop should appear; select it and click Next
        3. New Maven Project/Enter an artifact id. page:
            -   enter project definition and click Next
            
