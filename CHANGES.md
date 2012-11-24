@@ -1,8 +1,13 @@
-# Version 1.6
+# Version 2.0-RC1
+
+The archetype has been renamed from "qooxdoo-archetype-gui" to "qooxdoo-archetype-desktop"
 
 - New properties:
   
   1. qooxdoo.build.job : name of the build job 
+  2. qooxdoo.test.job : name of the job to build the testrunner
+  3. qooxdoo.test.view : name of the view used for the testrunner
+  4. qooxdoo.application.testDirectory  => ${project.basedir}/src/test/qooxdoo
 
 - Changed properties values:
 
@@ -17,10 +22,7 @@
 - Changed project structure :
   - translation => ${project.basedir}/src/main/resources/qooxdoo/translation
   - cache => ${project.build.directory}/qooxdoo/cache
+  - test (NEW) => ${project.basedir}/src/test/qooxdoo/__artifactId__/test
   
-- To discuss:
-  1. Relative path
-  2. Translation in build process ?
-  3. Unit tests ?
   
   

@@ -103,7 +103,7 @@
 			<plugin>
 				<groupId>org.qooxdoo</groupId>
 				<artifactId>qooxdoo-maven-plugin</artifactId>
-				<version>1.6-SNAPSHOT</version>
+				<version>2.0-RC1</version>
 				<extensions>true</extensions>
 				<configuration>
 					<useEmbeddedJython>false</useEmbeddedJython> <!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython -->
