@@ -20,12 +20,10 @@
 		<qooxdoo.application.name>${artifactId}</qooxdoo.application.name>
 		<qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
 		<qooxdoo.application.description>${project.description}</qooxdoo.application.description>
-		<qooxdoo.sdk.version>2.0.1</qooxdoo.sdk.version>
-		<qooxdoo.build.sourceEncoding>${project.build.sourceEncoding}</qooxdoo.build.sourceEncoding>
+		<qooxdoo.sdk.version>2.0.3</qooxdoo.sdk.version>
 		<qooxdoo.build.job>build</qooxdoo.build.job> <!--  Default job for compilation (production)-->
 		<qooxdoo.test.job>test</qooxdoo.test.job> <!--  Default job for test (production)-->
 		<!-- Python settings -->
-		<qooxdoo.build.python>python</qooxdoo.build.python>
 		<python.lin>python</python.lin>  <!-- Path to python interpreter on linux -->
 		<python.win>python</python.win>  <!-- Path to python interpreter on windows -->
 		<python.mac>python</python.mac>  <!-- Path to python interpreter on mac -->
@@ -123,7 +121,7 @@
                      <webApp>
 					    <contextPath>/</contextPath>
 					    <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
-					      <resourcesAsCSV>${project.build.directory}/qooxdoo/${qooxdoo.application.name},${basedir},${project.build.directory}/qooxdoo</resourcesAsCSV>
+					      <resourcesAsCSV>${project.build.directory}/qooxdoo/${qooxdoo.application.name},${basedir},${project.build.directory}/qooxdoo,${project.build.directory}</resourcesAsCSV>
 					    </baseResource>
 					</webApp>
                     <connectors>
