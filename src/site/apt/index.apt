@@ -1,0 +1,79 @@
+Qooxdoo Maven Archetype 
+
+  An archetype is a template for a Maven project which is used by the ''Maven Archetype'' plugin to create new projects. 
+Archetypes are useful to present end-users with a set of baseline projects that can be used as a foundation for new applications.
+
+  The <<<qooxdoo-archetype-desktop>>> provides a skeleton project for developping a qooxdoo desktop application (RIA) with Maven as the build tool.
+It uses the {{{http://qxmaven.charless.org/plugin}Qooxdoo Maven Plugin}} which integrates the qooxdoo build system into Maven 
+and a jetty container to serve not only the development and production applications but also the great components that comes with the Qooxdoo framework: testrunner, apiviewer, ...
+
+  A project created with this archetype gives you a working 'Hello World' application which is a starting point for your own Qooxdoo RIA. 
+
+* Getting started
+
+** Using the maven command line
+
+  Begin with the following lines to create a new application and start a jetty container serving the newly created (and compiled) application:
+
++-------------------------------+
+mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-gui -DarchetypeVersion=2.0-RC1
+cd appname
+mvn jetty:run
++-------------------------------+
+
+  And open a browser : {{http://localhost:8080}}
+  
+***  To build the development version and start the web server:
+
++-------------------------------+
+mvn -Dbuild.type=dev jetty:run
++-------------------------------+
+
+  And open a browser : {{http://localhost:8080}}
+
+***  To compile the application:
+
++-------------------------------+
+mvn (-Dbuild.type=dev) compile
++-------------------------------+
+
+***  To run unit tests:
+
++-------------------------------+
+mvn (-Dbuild.type=dev) test
++-------------------------------+
+
+***  To build the testrunner and start the web server: 
+
++-------------------------------+
+mvn (-Dbuild.type=dev) qooxdoo:testrunner jetty:run
++-------------------------------+
+
+  And open a browser : {{{http://localhost:8080}}}
+
+
+** Using Eclipse
+
+  You need to install the {{{http://eclipse.org/m2e/}maven eclipse plugin}} first (m2e).
+
+   [[1]] Go to <<<File/New/Other...>>>
+   
+   [[2]] Select <<<Maven/Maven Project>>>
+   
+   [[3]] <<<New Maven Project/Select project name and location>>> page: click Next
+   
+   [[4]] <<<New Maven Project/Select an Archetype>>> page:
+   
+      [[a]] Catalog: Select <<<All catalogs>>>
+   
+      [[b]] Filter: type <<<qooxdoo>>>
+   
+      [[c]] The <<<qooxdoo-archetype-gui>>> should appear; select it and click Next
+   
+   [[1]] <<<New Maven Project/Enter an artifact id.>>> page:enter project definition and click Next
+   
+   [[1]] The project will be created in Eclipse:
+   
+      [[a]] Right-click the project and select <<<Run as/Maven build...>>>
+   
+      [[b]] Write <<<jetty:run>>> as the goal name and run the job
