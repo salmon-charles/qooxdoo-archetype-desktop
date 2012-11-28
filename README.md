@@ -13,8 +13,6 @@ $ mvn jetty:run
 
 Visit the [qooxdoo-archetype home page] project page for full documentation.
 
-# Getting started
-
 ## Prerequisite
 
 * Java
