@@ -10,7 +10,7 @@
       <topBarEnabled>true</topBarEnabled>
       <sideBarEnabled>false</sideBarEnabled>
        <gitHub>
-        <projectId>salmon-charles/qooxdoo-maven-plugin</projectId>
+        <projectId>salmon-charles/qooxdoo-archetype-desktop</projectId>
         <ribbonOrientation>right</ribbonOrientation>
         <ribbonColor>orange</ribbonColor>
       </gitHub>
