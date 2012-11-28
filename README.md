@@ -1,6 +1,6 @@
 [qooxdoo-archetype home page]: http://qxmaven.charless.org/archetype
 
-# Qooxdoo Archetype Gui
+# Qooxdoo Archetype Desktop
 
 The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.
 
@@ -12,8 +12,6 @@ $ mvn jetty:run
 ```
 
 Visit the [qooxdoo-archetype home page] project page for full documentation.
-
-# Getting started
 
 ## Prerequisite
 
