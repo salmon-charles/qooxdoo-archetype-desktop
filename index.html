@@ -31,18 +31,22 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Qooxdoo Archetype Desktop</h1>
+        <p>The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.</p>
 
-<p>The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.</p>
+<h2>Quick start</h2>
 
-<p>Creating, building and running a qooxdoo Rich Internet Application is as simple as:</p>
+<p>Run...</p>
 
 <div class="highlight"><pre><span class="nv">$ </span>mvn archetype:generate -DgroupId<span class="o">=</span>org.test -DartifactId<span class="o">=</span>appname -Dversion<span class="o">=</span>0.1-SNAPSHOT -DarchetypeGroupId<span class="o">=</span>org.qooxdoo -DarchetypeArtifactId<span class="o">=</span>qooxdoo-archetype-desktop -DarchetypeVersion<span class="o">=</span>1.6
 <span class="nv">$ </span><span class="nb">cd </span>appname
 <span class="nv">$ </span>mvn jetty:run
 </pre></div>
 
-<p>Visit the <a href="http://qxmaven.charless.org/archetype">qooxdoo-archetype home page</a> project page for full documentation.</p>
+<p>... to create, build, test and start a new qooxdoo desktop application. </p>
+
+<p>Then go to <a href="http:///localhost:8080">http:///localhost:8080</a> and click on production application.</p>
+
+<p>Run <code>mvn -DskipTests jetty:run</code> if you have trouble with unit tests.</p>
 
 <h2>Prerequisite</h2>
 
