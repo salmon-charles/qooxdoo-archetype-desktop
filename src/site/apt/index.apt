@@ -3,7 +3,7 @@ Qooxdoo Maven Archetype
   An archetype is a template for a Maven project which is used by the ''Maven Archetype'' plugin to create new projects. 
 Archetypes are useful to present end-users with a set of baseline projects that can be used as a foundation for new applications.
 
-  The <<<qooxdoo-archetype-desktop>>> provides a skeleton project for developping a qooxdoo desktop application (RIA) with Maven as the build tool.
+  The <<<qooxdoo-archetype-desktop>>> provides a skeleton project for developing a qooxdoo desktop application (RIA) with Maven as the build tool.
 It uses the {{{http://qxmaven.charless.org/plugin}Qooxdoo Maven Plugin}} which integrates the qooxdoo build system into Maven 
 and a jetty container to serve not only the development and production applications but also the great components that comes with the Qooxdoo framework: testrunner, apiviewer, ...
 
