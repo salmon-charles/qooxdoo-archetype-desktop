@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Qooxdoo-archetype-desktop : A maven archetype to create a qooxdoo gui application in a minute" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Qooxdoo-archetype-desktop</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/salmon-charles/qooxdoo-archetype-desktop">View on GitHub</a>
+
+          <h1 id="project_title">Qooxdoo-archetype-desktop</h1>
+          <h2 id="project_tagline">A maven archetype to create a qooxdoo gui application in a minute</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/salmon-charles/qooxdoo-archetype-desktop/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/salmon-charles/qooxdoo-archetype-desktop/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Qooxdoo Archetype Desktop</h1>
+
+<p>The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.</p>
+
+<p>Creating, building and running a qooxdoo Rich Internet Application is as simple as:</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>mvn archetype:generate -DgroupId<span class="o">=</span>org.test -DartifactId<span class="o">=</span>appname -Dversion<span class="o">=</span>0.1-SNAPSHOT -DarchetypeGroupId<span class="o">=</span>org.qooxdoo -DarchetypeArtifactId<span class="o">=</span>qooxdoo-archetype-desktop -DarchetypeVersion<span class="o">=</span>1.6
+<span class="nv">$ </span><span class="nb">cd </span>appname
+<span class="nv">$ </span>mvn jetty:run
+</pre></div>
+
+<p>Visit the <a href="http://qxmaven.charless.org/archetype">qooxdoo-archetype home page</a> project page for full documentation.</p>
+
+<h2>Prerequisite</h2>
+
+<ul>
+<li>Java</li>
+<li>Maven or Eclipse with m2e</li>
+<li>(Recommanded) Python</li>
+</ul><h3>Using an external python interpreter</h3>
+
+<p>This is the recommended way so far. 
+Make sure python binary is on your path or specify the full path to the binary in the pom file.</p>
+
+<div class="highlight"><pre><span class="nt">&lt;properties&gt;</span>
+    <span class="c">&lt;!-- Python settings --&gt;</span>
+    <span class="nt">&lt;python.lin&gt;</span>python<span class="nt">&lt;/python.lin&gt;</span>  <span class="c">&lt;!-- Path to python interpreter on linux --&gt;</span>
+    <span class="nt">&lt;python.win&gt;</span>python<span class="nt">&lt;/python.win&gt;</span>  <span class="c">&lt;!-- Path to python interpreter on windows --&gt;</span>
+    <span class="nt">&lt;python.mac&gt;</span>python<span class="nt">&lt;/python.mac&gt;</span>  <span class="c">&lt;!-- Path to python interpreter on mac --&gt;</span> 
+<span class="nt">&lt;/properties&gt;</span>   
+</pre></div>
+
+<h3>Using the build-in Jyhton</h3>
+
+<p><strong>WARNING: THIS IS AN EXPERIMENTAL FEATURE !</strong></p>
+
+<p>The first run can be very long; however, once the cache has been created, further runs are faster. </p>
+
+<p>Open the pom and set the <code>useEmbeddedJython</code> property to <code>true</code>.</p>
+
+<div class="highlight"><pre><span class="nt">&lt;plugin&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.qooxdoo<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>qooxdoo-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.0-RC1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;extensions&gt;</span>true<span class="nt">&lt;/extensions&gt;</span>
+    <span class="nt">&lt;configuration&gt;</span>
+        <span class="nt">&lt;useEmbeddedJython&gt;</span>true<span class="nt">&lt;/useEmbeddedJython&gt;</span> <span class="c">&lt;!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython --&gt;</span>
+    <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</pre></div>
+
+<h2>Create the application</h2>
+
+<h3>Using the maven command line</h3>
+
+<div class="highlight"><pre><span class="nv">$ </span>mvn archetype:generate -DgroupId<span class="o">=</span>org.test -DartifactId<span class="o">=</span>appname -Dversion<span class="o">=</span>0.1-SNAPSHOT -DarchetypeGroupId<span class="o">=</span>org.qooxdoo -DarchetypeArtifactId<span class="o">=</span>qooxdoo-archetype-desktop -DarchetypeVersion<span class="o">=</span>1.6
+<span class="nv">$ </span><span class="nb">cd </span>appname
+</pre></div>
+
+<h3>Using Eclipse</h3>
+
+<p>You need to install the maven eclipse plugin first (m2e).</p>
+
+<pre><code>1. Go to File/New/Other...
+2. Select Maven/Maven Project
+   1. New Maven Project/Select project name and location page: 
+       -   click Next
+   2. New Maven Project/Select an Archetype page:
+       -   Catalog: Select All catalogs
+       -   Filter: type qooxdoo
+       -   The qooxdoo-archetype-desktop should appear; select it and click Next
+   3. New Maven Project/Enter an artifact id. page:
+       -   enter project definition and click Next
+</code></pre>
+
+<h2>Build and run the application</h2>
+
+<h3>Using the maven command line</h3>
+
+<div class="highlight"><pre><span class="nv">$ </span>mvn jetty:run
+</pre></div>
+
+<p>Then open a browser : <a href="http:///localhost:8080">http:///localhost:8080</a></p>
+
+<h3>Using Eclipse</h3>
+
+<p>On the project that has been created in Eclipse:</p>
+
+<pre><code>1. Right-click the project and select `Run as/Maven build...`
+2. In `Goals`, write `jetty:run`
+3. Click `Run`
+</code></pre>
+
+<p>Then open a browser : <a href="http:///localhost:8080">http:///localhost:8080</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Qooxdoo-archetype-desktop maintained by <a href="https://github.com/salmon-charles">salmon-charles</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
