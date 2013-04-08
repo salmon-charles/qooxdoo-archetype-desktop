@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130408" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>qooxdoo-archetype-desktop - </title>
+    <title>qooxdoo-archetype-desktop - Project Distribution Management</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -126,53 +126,7 @@
                 
         <div id="bodyColumn" >
                                   
-            <h1>Qooxdoo Archetype Desktop</h1><p>The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.</p><p>Creating, building and running a qooxdoo Rich Internet Application is as simple as: <tt>shell
-$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
-$ cd appname
-$ mvn jetty:run
-</tt></p><p>Visit the <a class="externalLink" href="http://qxmaven.charless.org/archetype">qooxdoo-archetype home page</a> project page for full documentation.</p><div class="section"><h2>Prerequisite<a name="Prerequisite"></a></h2>
-<ul>
-  <li>Java</li>
-  <li>Maven or Eclipse with m2e</li>
-  <li>(Recommanded) Python</li>
-</ul><div class="section"><h3>Using an external python interpreter<a name="Using_an_external_python_interpreter"></a></h3><p>This is the recommended way so far. Make sure python binary is on your path or specify the full path to the binary in the pom file.</p>
-<div class="source"><pre class="prettyprint">&lt;properties&gt;
-	&lt;!-- Python settings --&gt;
-	&lt;python.lin&gt;python&lt;/python.lin&gt;  &lt;!-- Path to python interpreter on linux --&gt;
-	&lt;python.win&gt;python&lt;/python.win&gt;  &lt;!-- Path to python interpreter on windows --&gt;
-	&lt;python.mac&gt;python&lt;/python.mac&gt;  &lt;!-- Path to python interpreter on mac --&gt;	
-&lt;/properties&gt;	
-</pre></div></div><div class="section"><h3>Using the build-in Jyhton<a name="Using_the_build-in_Jyhton"></a></h3><p><b>WARNING: THIS IS AN EXPERIMENTAL FEATURE !</b></p><p>The first run can be very long; however, once the cache has been created, further runs are faster. </p><p>Open the pom and set the <tt>useEmbeddedJython</tt> property to <tt>true</tt>.</p>
-<div class="source"><pre class="prettyprint">&lt;plugin&gt;
-	&lt;groupId&gt;org.qooxdoo&lt;/groupId&gt;
-	&lt;artifactId&gt;qooxdoo-maven-plugin&lt;/artifactId&gt;
-	&lt;version&gt;2.0-RC1&lt;/version&gt;
-	&lt;extensions&gt;true&lt;/extensions&gt;
-	&lt;configuration&gt;
-		&lt;useEmbeddedJython&gt;true&lt;/useEmbeddedJython&gt; &lt;!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython --&gt;
-	&lt;/configuration&gt;
-&lt;/plugin&gt;
-</pre></div></div></div><div class="section"><h2>Create the application<a name="Create_the_application"></a></h2><div class="section"><h3>Using the maven command line<a name="Using_the_maven_command_line"></a></h3>
-<div class="source"><pre class="prettyprint">$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
-$ cd appname
-</pre></div></div><div class="section"><h3>Using Eclipse<a name="Using_Eclipse"></a></h3><p>You need to install the maven eclipse plugin first (m2e).</p>
-<div class="source"><pre class="prettyprint">1. Go to File/New/Other...
-2. Select Maven/Maven Project
-   1. New Maven Project/Select project name and location page: 
-       -   click Next
-   2. New Maven Project/Select an Archetype page:
-       -   Catalog: Select All catalogs
-       -   Filter: type qooxdoo
-       -   The qooxdoo-archetype-desktop should appear; select it and click Next
-   3. New Maven Project/Enter an artifact id. page:
-       -   enter project definition and click Next
-</pre></div></div></div><div class="section"><h2>Build and run the application<a name="Build_and_run_the_application"></a></h2><div class="section"><h3>Using the maven command line<a name="Using_the_maven_command_line"></a></h3>
-<div class="source"><pre class="prettyprint">$ mvn jetty:run
-</pre></div><p>Then open a browser : <a class="externalLink" href="http:///localhost:8080">http:///localhost:8080</a></p></div><div class="section"><h3>Using Eclipse<a name="Using_Eclipse"></a></h3><p>On the project that has been created in Eclipse:</p>
-<div class="source"><pre class="prettyprint">1. Right-click the project and select `Run as/Maven build...`
-2. In `Goals`, write `jetty:run`
-3. Click `Run`
-</pre></div><p>Then open a browser : <a class="externalLink" href="http:///localhost:8080">http:///localhost:8080</a></p></div></div>
+            <div class="section"><h2>Overview<a name="Overview"></a></h2><a name="Overview"></a><p>The following is the distribution management information used by this project.</p><div class="section"><h3>Repository - sonatype-nexus-staging<a name="Repository_-_sonatype-nexus-staging"></a></h3><a name="Repository_-_sonatype-nexus-staging"></a><a class="externalLink" href="https://oss.sonatype.org/service/local/staging/deploy/maven2/">https://oss.sonatype.org/service/local/staging/deploy/maven2/</a></div><div class="section"><h3>Snapshot Repository - sonatype-nexus-snapshots<a name="Snapshot_Repository_-_sonatype-nexus-snapshots"></a></h3><a name="Snapshot_Repository_-_sonatype-nexus-snapshots"></a><a class="externalLink" href="https://oss.sonatype.org/content/repositories/snapshots/">https://oss.sonatype.org/content/repositories/snapshots/</a></div><div class="section"><h3>Site - ftp-charless<a name="Site_-_ftp-charless"></a></h3><a name="Site_-_ftp-charless"></a><a class="externalLink" href="ftp://charless.org/qxmaven/archetype">ftp://charless.org/qxmaven/archetype</a></div></div>
                   </div>
           </div>
 

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130408" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>qooxdoo-archetype-desktop - </title>
+    <title>qooxdoo-archetype-desktop - Source Repository</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -126,53 +126,7 @@
                 
         <div id="bodyColumn" >
                                   
-            <h1>Qooxdoo Archetype Desktop</h1><p>The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.</p><p>Creating, building and running a qooxdoo Rich Internet Application is as simple as: <tt>shell
-$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
-$ cd appname
-$ mvn jetty:run
-</tt></p><p>Visit the <a class="externalLink" href="http://qxmaven.charless.org/archetype">qooxdoo-archetype home page</a> project page for full documentation.</p><div class="section"><h2>Prerequisite<a name="Prerequisite"></a></h2>
-<ul>
-  <li>Java</li>
-  <li>Maven or Eclipse with m2e</li>
-  <li>(Recommanded) Python</li>
-</ul><div class="section"><h3>Using an external python interpreter<a name="Using_an_external_python_interpreter"></a></h3><p>This is the recommended way so far. Make sure python binary is on your path or specify the full path to the binary in the pom file.</p>
-<div class="source"><pre class="prettyprint">&lt;properties&gt;
-	&lt;!-- Python settings --&gt;
-	&lt;python.lin&gt;python&lt;/python.lin&gt;  &lt;!-- Path to python interpreter on linux --&gt;
-	&lt;python.win&gt;python&lt;/python.win&gt;  &lt;!-- Path to python interpreter on windows --&gt;
-	&lt;python.mac&gt;python&lt;/python.mac&gt;  &lt;!-- Path to python interpreter on mac --&gt;	
-&lt;/properties&gt;	
-</pre></div></div><div class="section"><h3>Using the build-in Jyhton<a name="Using_the_build-in_Jyhton"></a></h3><p><b>WARNING: THIS IS AN EXPERIMENTAL FEATURE !</b></p><p>The first run can be very long; however, once the cache has been created, further runs are faster. </p><p>Open the pom and set the <tt>useEmbeddedJython</tt> property to <tt>true</tt>.</p>
-<div class="source"><pre class="prettyprint">&lt;plugin&gt;
-	&lt;groupId&gt;org.qooxdoo&lt;/groupId&gt;
-	&lt;artifactId&gt;qooxdoo-maven-plugin&lt;/artifactId&gt;
-	&lt;version&gt;2.0-RC1&lt;/version&gt;
-	&lt;extensions&gt;true&lt;/extensions&gt;
-	&lt;configuration&gt;
-		&lt;useEmbeddedJython&gt;true&lt;/useEmbeddedJython&gt; &lt;!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython --&gt;
-	&lt;/configuration&gt;
-&lt;/plugin&gt;
-</pre></div></div></div><div class="section"><h2>Create the application<a name="Create_the_application"></a></h2><div class="section"><h3>Using the maven command line<a name="Using_the_maven_command_line"></a></h3>
-<div class="source"><pre class="prettyprint">$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
-$ cd appname
-</pre></div></div><div class="section"><h3>Using Eclipse<a name="Using_Eclipse"></a></h3><p>You need to install the maven eclipse plugin first (m2e).</p>
-<div class="source"><pre class="prettyprint">1. Go to File/New/Other...
-2. Select Maven/Maven Project
-   1. New Maven Project/Select project name and location page: 
-       -   click Next
-   2. New Maven Project/Select an Archetype page:
-       -   Catalog: Select All catalogs
-       -   Filter: type qooxdoo
-       -   The qooxdoo-archetype-desktop should appear; select it and click Next
-   3. New Maven Project/Enter an artifact id. page:
-       -   enter project definition and click Next
-</pre></div></div></div><div class="section"><h2>Build and run the application<a name="Build_and_run_the_application"></a></h2><div class="section"><h3>Using the maven command line<a name="Using_the_maven_command_line"></a></h3>
-<div class="source"><pre class="prettyprint">$ mvn jetty:run
-</pre></div><p>Then open a browser : <a class="externalLink" href="http:///localhost:8080">http:///localhost:8080</a></p></div><div class="section"><h3>Using Eclipse<a name="Using_Eclipse"></a></h3><p>On the project that has been created in Eclipse:</p>
-<div class="source"><pre class="prettyprint">1. Right-click the project and select `Run as/Maven build...`
-2. In `Goals`, write `jetty:run`
-3. Click `Run`
-</pre></div><p>Then open a browser : <a class="externalLink" href="http:///localhost:8080">http:///localhost:8080</a></p></div></div>
+            <div class="section"><h2>Overview<a name="Overview"></a></h2><a name="Overview"></a><p>This project uses a Source Content Management System to manage its source code.</p></div><div class="section"><h2>Web Access<a name="Web_Access"></a></h2><a name="Web_Access"></a><p>The following is a link to the online source repository.</p><div class="source"><pre class="prettyprint"><a class="externalLink" href="https://github.com/salmon-charles/qooxdoo-archetype-desktop">https://github.com/salmon-charles/qooxdoo-archetype-desktop</a></pre></div></div><div class="section"><h2>Anonymous access<a name="Anonymous_access"></a></h2><a name="Anonymous_access"></a><p>Refer to the documentation of the SCM used for more information about anonymously check out. The connection url is:</p><div class="source"><pre class="prettyprint">git:git://github.com/salmon-charles/qooxdoo-archetype-desktop.git</pre></div></div><div class="section"><h2>Developer access<a name="Developer_access"></a></h2><a name="Developer_access"></a><p>Refer to the documentation of the SCM used for more information about developer check out. The connection url is:</p><div class="source"><pre class="prettyprint">git:git@github.com:salmon-charles/qooxdoo-archetype-desktop.git</pre></div></div><div class="section"><h2>Access from behind a firewall<a name="Access_from_behind_a_firewall"></a></h2><a name="Access_from_behind_a_firewall"></a><p>Refer to the documentation of the SCM used for more information about access behind a firewall.</p></div>
                   </div>
           </div>
 

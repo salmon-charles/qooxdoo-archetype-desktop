@@ -126,53 +126,9 @@
                 
         <div id="bodyColumn" >
                                   
-            <h1>Qooxdoo Archetype Desktop</h1><p>The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.</p><p>Creating, building and running a qooxdoo Rich Internet Application is as simple as: <tt>shell
-$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
-$ cd appname
-$ mvn jetty:run
-</tt></p><p>Visit the <a class="externalLink" href="http://qxmaven.charless.org/archetype">qooxdoo-archetype home page</a> project page for full documentation.</p><div class="section"><h2>Prerequisite<a name="Prerequisite"></a></h2>
-<ul>
-  <li>Java</li>
-  <li>Maven or Eclipse with m2e</li>
-  <li>(Recommanded) Python</li>
-</ul><div class="section"><h3>Using an external python interpreter<a name="Using_an_external_python_interpreter"></a></h3><p>This is the recommended way so far. Make sure python binary is on your path or specify the full path to the binary in the pom file.</p>
-<div class="source"><pre class="prettyprint">&lt;properties&gt;
-	&lt;!-- Python settings --&gt;
-	&lt;python.lin&gt;python&lt;/python.lin&gt;  &lt;!-- Path to python interpreter on linux --&gt;
-	&lt;python.win&gt;python&lt;/python.win&gt;  &lt;!-- Path to python interpreter on windows --&gt;
-	&lt;python.mac&gt;python&lt;/python.mac&gt;  &lt;!-- Path to python interpreter on mac --&gt;	
-&lt;/properties&gt;	
-</pre></div></div><div class="section"><h3>Using the build-in Jyhton<a name="Using_the_build-in_Jyhton"></a></h3><p><b>WARNING: THIS IS AN EXPERIMENTAL FEATURE !</b></p><p>The first run can be very long; however, once the cache has been created, further runs are faster. </p><p>Open the pom and set the <tt>useEmbeddedJython</tt> property to <tt>true</tt>.</p>
-<div class="source"><pre class="prettyprint">&lt;plugin&gt;
-	&lt;groupId&gt;org.qooxdoo&lt;/groupId&gt;
-	&lt;artifactId&gt;qooxdoo-maven-plugin&lt;/artifactId&gt;
-	&lt;version&gt;2.0-RC1&lt;/version&gt;
-	&lt;extensions&gt;true&lt;/extensions&gt;
-	&lt;configuration&gt;
-		&lt;useEmbeddedJython&gt;true&lt;/useEmbeddedJython&gt; &lt;!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython --&gt;
-	&lt;/configuration&gt;
-&lt;/plugin&gt;
-</pre></div></div></div><div class="section"><h2>Create the application<a name="Create_the_application"></a></h2><div class="section"><h3>Using the maven command line<a name="Using_the_maven_command_line"></a></h3>
-<div class="source"><pre class="prettyprint">$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
-$ cd appname
-</pre></div></div><div class="section"><h3>Using Eclipse<a name="Using_Eclipse"></a></h3><p>You need to install the maven eclipse plugin first (m2e).</p>
-<div class="source"><pre class="prettyprint">1. Go to File/New/Other...
-2. Select Maven/Maven Project
-   1. New Maven Project/Select project name and location page: 
-       -   click Next
-   2. New Maven Project/Select an Archetype page:
-       -   Catalog: Select All catalogs
-       -   Filter: type qooxdoo
-       -   The qooxdoo-archetype-desktop should appear; select it and click Next
-   3. New Maven Project/Enter an artifact id. page:
-       -   enter project definition and click Next
-</pre></div></div></div><div class="section"><h2>Build and run the application<a name="Build_and_run_the_application"></a></h2><div class="section"><h3>Using the maven command line<a name="Using_the_maven_command_line"></a></h3>
-<div class="source"><pre class="prettyprint">$ mvn jetty:run
-</pre></div><p>Then open a browser : <a class="externalLink" href="http:///localhost:8080">http:///localhost:8080</a></p></div><div class="section"><h3>Using Eclipse<a name="Using_Eclipse"></a></h3><p>On the project that has been created in Eclipse:</p>
-<div class="source"><pre class="prettyprint">1. Right-click the project and select `Run as/Maven build...`
-2. In `Goals`, write `jetty:run`
-3. Click `Run`
-</pre></div><p>Then open a browser : <a class="externalLink" href="http:///localhost:8080">http:///localhost:8080</a></p></div></div>
+            <div class="section"><h2>Qooxdoo Maven Archetype <a name="Qooxdoo_Maven_Archetype"></a></h2><p>An archetype is a template for a Maven project which is used by the ''Maven Archetype'' plugin to create new projects. Archetypes are useful to present end-users with a set of baseline projects that can be used as a foundation for new applications.</p><p>The <tt>qooxdoo-archetype-desktop</tt> provides a skeleton project for developing a qooxdoo desktop application (RIA) with Maven as the build tool. It uses the <a class="externalLink" href="http://qxmaven.charless.org/plugin">Qooxdoo Maven Plugin</a> which integrates the qooxdoo build system into Maven and a jetty container to serve not only the development and production applications but also the great components that comes with the Qooxdoo framework: testrunner, apiviewer, ...</p><p>A project created with this archetype gives you a working 'Hello World' application which is a starting point for your own Qooxdoo RIA. </p><div class="section"><h3>Getting started<a name="Getting_started"></a></h3><div class="section"><h4>Using the maven command line<a name="Using_the_maven_command_line"></a></h4><p>Begin with the following lines to create a new application and start a jetty container serving the newly created (and compiled) application:</p><div class="source"><pre class="prettyprint">mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-gui -DarchetypeVersion=2.0-RC1
+cd appname
+mvn jetty:run</pre></div><p>And open a browser : <a class="externalLink" href="http://localhost:8080">http://localhost:8080</a></p><div class="section"><h5>To build the development version and start the web server:<a name="To_build_the_development_version_and_start_the_web_server:"></a></h5><div class="source"><pre class="prettyprint">mvn -Dbuild.type=dev jetty:run</pre></div><p>And open a browser : <a class="externalLink" href="http://localhost:8080">http://localhost:8080</a></p></div><div class="section"><h5>To compile the application:<a name="To_compile_the_application:"></a></h5><div class="source"><pre class="prettyprint">mvn (-Dbuild.type=dev) compile</pre></div></div><div class="section"><h5>To run unit tests:<a name="To_run_unit_tests:"></a></h5><div class="source"><pre class="prettyprint">mvn (-Dbuild.type=dev) test</pre></div></div><div class="section"><h5>To build the testrunner and start the web server: <a name="To_build_the_testrunner_and_start_the_web_server:"></a></h5><div class="source"><pre class="prettyprint">mvn (-Dbuild.type=dev) qooxdoo:testrunner jetty:run</pre></div><p>And open a browser : <a class="externalLink" href="http://localhost:8080"></a></p></div></div><div class="section"><h4>Using Eclipse<a name="Using_Eclipse"></a></h4><p>You need to install the <a class="externalLink" href="http://eclipse.org/m2e/">maven eclipse plugin</a> first (m2e).</p><ol style="list-style-type: decimal"><li>Go to <tt>File/New/Other...</tt></li><li>Select <tt>Maven/Maven Project</tt></li><li><tt>New Maven Project/Select project name and location</tt> page: click Next</li><li><tt>New Maven Project/Select an Archetype</tt> page:<ol style="list-style-type: lower-alpha"><li>Catalog: Select <tt>All catalogs</tt></li><li>Filter: type <tt>qooxdoo</tt></li><li>The <tt>qooxdoo-archetype-gui</tt> should appear; select it and click Next</li></ol></li><li><tt>New Maven Project/Enter an artifact id.</tt> page:enter project definition and click Next</li><li>The project will be created in Eclipse:<ol style="list-style-type: lower-alpha"><li>Right-click the project and select <tt>Run as/Maven build...</tt></li><li>Write <tt>jetty:run</tt> as the goal name and run the job</li></ol></li></ol></div></div></div>
                   </div>
           </div>
 
