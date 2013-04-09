@@ -1,0 +1,92 @@
+---
+layout: page
+title: Qooxdoo Archetype Desktop
+tagline:
+---
+{% include JB/setup %}
+	    	    	
+<p>The qooxdoo-archetype-desktop is a maven archetype to create a qooxdoo application within a maven project.</p><p>Creating, building and running a qooxdoo Rich Internet Application is as simple as: 
+
+{% highlight bash %}
+$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
+$ cd appname
+$ mvn jetty:run
+{% endhighlight %}
+
+</p>
+
+<div class="section"><h2>Prerequisite<a name="Prerequisite"></a></h2>
+
+<ul>
+  <li>Java</li>
+  <li>Maven or Eclipse with m2e</li>
+  <li>(Recommanded) Python</li>
+</ul>
+
+<div class="section"><h3>Using an external python interpreter<a name="Using_an_external_python_interpreter"></a></h3><p>This is the recommended way so far. Make sure python binary is on your path or specify the full path to the binary in the pom file.</p>
+
+{% highlight xml %}
+<properties>
+	<!-- Python settings -->
+	<python.lin>python</python.lin>  <!-- Path to python interpreter on linux -->
+	<python.win>python</python.win>  <!-- Path to python interpreter on windows -->
+	<python.mac>python</python.mac>  <!-- Path to python interpreter on mac -->	
+</properties>	
+{% endhighlight %}</div>
+
+<div class="section"><h3>Using the build-in Jyhton<a name="Using_the_build-in_Jyhton"></a></h3>
+<p><b>WARNING: THIS IS AN EXPERIMENTAL FEATURE !</b></p>
+<p>The first run can be very long; however, once the cache has been created, further runs are faster. </p>
+<p>Open the pom and set the <tt>useEmbeddedJython</tt> property to <tt>true</tt>.</p>
+{% highlight xml %}
+<plugin>
+	<groupId>org.qooxdoo</groupId>
+	<artifactId>qooxdoo-maven-plugin</artifactId>
+	<version>2.0-RC1</version>
+	<extensions>true</extensions>
+	<configuration>
+		<useEmbeddedJython>true</useEmbeddedJython> <!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython -->
+	</configuration>
+</plugin>
+{% endhighlight %}
+</div>
+
+</div>
+
+<div class="section"><h2>Create the application<a name="Create_the_application"></a></h2>
+
+<div class="section"><h3>Using the maven command line<a name="Using_the_maven_command_line"></a></h3>
+{% highlight bash %}
+$ mvn archetype:generate -DgroupId=org.test -DartifactId=appname -Dversion=0.1-SNAPSHOT -DarchetypeGroupId=org.qooxdoo -DarchetypeArtifactId=qooxdoo-archetype-desktop -DarchetypeVersion=1.6
+$ cd appname
+{% endhighlight %}</div>
+
+<div class="section"><h3>Using Eclipse<a name="Using_Eclipse"></a></h3><p>You need to install the maven eclipse plugin first (m2e).</p>
+{% highlight bash %}
+1. Go to File/New/Other...
+2. Select Maven/Maven Project
+   1. New Maven Project/Select project name and location page: 
+       -   click Next
+   2. New Maven Project/Select an Archetype page:
+       -   Catalog: Select All catalogs
+       -   Filter: type qooxdoo
+       -   The qooxdoo-archetype-desktop should appear; select it and click Next
+   3. New Maven Project/Enter an artifact id. page:
+       -   enter project definition and click Next
+{% endhighlight %}</div></div>
+
+<div class="section"><h2>Build and run the application<a name="Build_and_run_the_application"></a></h2><div class="section"><h3>Using the maven command line<a name="Using_the_maven_command_line"></a></h3>
+{% highlight bash %}
+$ mvn jetty:run
+{% endhighlight %}
+
+<p>Then open a browser : <a class="externalLink" href="http:///localhost:8080">http:///localhost:8080</a></p></div><div class="section"><h3>Using Eclipse<a name="Using_Eclipse"></a></h3><p>On the project that has been created in Eclipse:</p>
+{% highlight bash %}
+1. Right-click the project and select `Run as/Maven build...`
+2. In `Goals`, write `jetty:run`
+3. Click `Run`
+{% endhighlight %}
+
+<p>Then open a browser : <a class="externalLink" href="http:///localhost:8080">http:///localhost:8080</a></p></div></div>
+
+     

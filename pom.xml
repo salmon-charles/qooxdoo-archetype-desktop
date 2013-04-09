@@ -4,7 +4,7 @@
 
 	<groupId>org.qooxdoo</groupId>
 	<artifactId>qooxdoo-archetype-desktop</artifactId>
-	<version>2.0-RC2-SNAPSHOT</version>
+	<version>2.1-SNAPSHOT</version>
 	<packaging>maven-archetype</packaging>
 
 	<name>qooxdoo-archetype-desktop</name>
@@ -26,12 +26,12 @@
 		<url>https://github.com/salmon-charles/qooxdoo-archetype-desktop</url>
 	</scm>
 
-	<distributionManagement>
+	<!-- <distributionManagement>
 		<site>
 			<id>ftp-charless</id>
 			<url>ftp://charless.org/qxmaven/archetype</url>
 		</site>
-	</distributionManagement>
+	</distributionManagement> -->
 
 	<build>
 		<extensions>
@@ -41,11 +41,11 @@
 				<version>2.0</version>
 			</extension>
 			<!-- Enabling the use of FTP for site distribution -->
-			<extension>
+			<!-- <extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-ftp</artifactId>
 				<version>1.0-beta-6</version>
-			</extension>
+			</extension> -->
 		</extensions>
 		<plugins>
 			<plugin>
@@ -53,7 +53,7 @@
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.2</version>
 				<configuration>
-					<locales>en,fr</locales>
+					<locales>en</locales>
 				</configuration>
 				<dependencies>
                 <dependency>
@@ -69,13 +69,15 @@
 		      <version>0.7</version>
 		      <configuration>
 		        <message>Creating site for ${project.version}</message>
+		        <repositoryName>qooxdoo-archetype-desktop</repositoryName>
+		        <repositoryOwner>salmon-charles</repositoryOwner>
 		      </configuration>
 		      <executions>
 		        <execution>
 		          <goals>
 		            <goal>site</goal>
 		          </goals>
-		          <phase>site</phase>
+		          <phase>site-deploy</phase>
 		        </execution>
 		      </executions>
 		    </plugin>

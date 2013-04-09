@@ -1,3 +1,8 @@
+# Version 2.1
+- Added maven site documentation
+
+- Changed qooxdoo-sdk and qooxdoo-maven-plugin version to 2.1
+
 # Version 2.0-RC1
 
 The archetype has been renamed from "qooxdoo-archetype-gui" to "qooxdoo-archetype-desktop"

@@ -20,7 +20,7 @@
 		<qooxdoo.application.name>${artifactId}</qooxdoo.application.name>
 		<qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
 		<qooxdoo.application.description>${project.description}</qooxdoo.application.description>
-		<qooxdoo.sdk.version>2.0.3</qooxdoo.sdk.version>
+		<qooxdoo.sdk.version>2.1</qooxdoo.sdk.version>
 		<qooxdoo.build.job>build</qooxdoo.build.job> <!--  Default job for compilation (production)-->
 		<qooxdoo.test.job>test</qooxdoo.test.job> <!--  Default job for test (production)-->
 		<!-- Python settings -->
@@ -103,7 +103,7 @@
 			<plugin>
 				<groupId>org.qooxdoo</groupId>
 				<artifactId>qooxdoo-maven-plugin</artifactId>
-				<version>2.0-RC1</version>
+				<version>2.1</version>
 				<extensions>true</extensions>
 				<configuration>
 					<useEmbeddedJython>false</useEmbeddedJython> <!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython -->
