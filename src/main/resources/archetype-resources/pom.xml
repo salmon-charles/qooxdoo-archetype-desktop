@@ -20,13 +20,20 @@
 		<qooxdoo.application.name>${artifactId}</qooxdoo.application.name>
 		<qooxdoo.application.summary>${project.name}</qooxdoo.application.summary>
 		<qooxdoo.application.description>${project.description}</qooxdoo.application.description>
-		<qooxdoo.sdk.version>2.1</qooxdoo.sdk.version>
+		<qooxdoo.sdk.version>2.1.1</qooxdoo.sdk.version>
 		<qooxdoo.build.job>build</qooxdoo.build.job> <!--  Default job for compilation (production)-->
 		<qooxdoo.test.job>test</qooxdoo.test.job> <!--  Default job for test (production)-->
+		<qooxdoo.test.unit.browser>phantomjs</qooxdoo.test.unit.browser> <!-- one of firefox, chrome, safari, ie, phantomjs -->
 		<!-- Python settings -->
 		<python.lin>python</python.lin>  <!-- Path to python interpreter on linux -->
 		<python.win>python</python.win>  <!-- Path to python interpreter on windows -->
 		<python.mac>python</python.mac>  <!-- Path to python interpreter on mac -->
+		<!-- Phantomjs is a headless webkit for doing html/js unit tests
+			 Install from http://phantomjs.org/download.html
+		 -->
+		<phantomjs.lin>phantomjs</phantomjs.lin>  <!-- Path to phantomjs executable on linux -->
+		<phantomjs.win>phantomjs</phantomjs.win>  <!-- Path to phantomjs executable on windows -->
+		<phantomjs.mac>phantomjs</phantomjs.mac>  <!-- Path to phantomjs executable on mac -->
 	</properties>
 
 	<dependencies>
@@ -48,6 +55,7 @@
 			</activation>
 			<properties>
 				<qooxdoo.build.python>${python.lin}</qooxdoo.build.python>
+				<webdriver.phantomjs.driver>${phantomjs.lin}</webdriver.phantomjs.driver>
 			</properties>
 		</profile>
 		<profile>
@@ -59,6 +67,7 @@
 			</activation>
 			<properties>
 				<qooxdoo.build.python>${python.win}</qooxdoo.build.python>
+				<webdriver.phantomjs.driver>${phantomjs.win}</webdriver.phantomjs.driver>
 				<!-- Line bellow to avoid lock problems on windows when using auto-scan -->
 				<jetty8.connector.implementation>org.eclipse.jetty.server.bio.SocketConnector</jetty8.connector.implementation>
 				<!-- Uncomment lines below to use internet-explorer for unit tests -->
@@ -75,6 +84,7 @@
 			</activation>
 			<properties>
 				<qooxdoo.build.python>${python.mac}</qooxdoo.build.python>
+				<webdriver.phantomjs.driver>${phantomjs.mac}</webdriver.phantomjs.driver>
 			</properties>
 		</profile>
 
@@ -103,10 +113,11 @@
 			<plugin>
 				<groupId>org.qooxdoo</groupId>
 				<artifactId>qooxdoo-maven-plugin</artifactId>
-				<version>2.1</version>
+				<version>2.1.1</version>
 				<extensions>true</extensions>
 				<configuration>
-					<useEmbeddedJython>false</useEmbeddedJython> <!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython -->
+					<useEmbeddedJython>false</useEmbeddedJython> 	<!-- Try a true value to enable the (EXPERIMENTAL) embedded Jython -->
+					<skipTests>false</skipTests> 					<!-- Make sure phantomjs is installed or set it to true -->
 				</configuration>
 			</plugin>
 			
